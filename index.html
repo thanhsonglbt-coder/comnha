@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Về ăn cơm nhà | Chiến dịch của học sinh THPT Đức Linh</title>
+<title>Về ăn cơm nhà | Đề tài KHKT của học sinh THPT Đức Linh</title>
 <meta name="description" content="Chiến dịch truyền thông tích cực về giá trị bữa cơm gia đình do học sinh Trường THPT Đức Linh thực hiện, thuộc đề tài KHKT năm học 2025–2026.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍚</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,6 +56,30 @@
     nav ul.mo{display:flex}
     nav li a{display:block;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.15)}
   }
+
+
+  /* ===== Băng tên đề tài (đầu trang) ===== */
+  .bang-de-tai{background:var(--muc);color:#fff;padding:22px 0 20px;border-bottom:4px solid var(--lua)}
+  :root[data-theme="dark"] .bang-de-tai{background:#0A0F1E}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .bang-de-tai{background:#0A0F1E} }
+  .bang-de-tai .loai{margin:0 0 6px;font-size:14px;font-weight:500;color:var(--lua)}
+  .bang-de-tai .ten-de-tai{margin:0;font-size:clamp(20px,3.2vw,30px);line-height:1.3;font-weight:800;letter-spacing:-.01em;max-width:34em}
+  .bang-de-tai .thuc-hien{display:flex;flex-wrap:wrap;gap:8px 28px;margin:14px 0 0;font-size:15px;opacity:.95}
+  .bang-de-tai .thuc-hien b{color:var(--lua);font-weight:700}
+
+  /* ===== Nhóm thực hiện ===== */
+  .nhom-th{background:var(--lam-nhat)}
+  .the-nguoi{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px}
+  .nguoi{background:var(--the);border-radius:22px;padding:28px 24px;text-align:center}
+  .nguoi.gv{background:var(--men-lam);color:#fff}
+  .anh-chu{width:84px;height:84px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:30px;background:var(--lam-nhat);color:var(--men-lam);border:4px solid var(--lua)}
+  .gv .anh-chu{background:#fff}
+  .vai-tro{margin:0 0 6px;font-size:14px;font-weight:700;color:var(--go)}
+  .gv .vai-tro{color:var(--lua)}
+  .nguoi h3{margin:0 0 4px;font-size:22px;line-height:1.25;font-weight:800}
+  .nguoi .phu{margin:0;font-size:15px;color:var(--chu-phu)}
+  .gv .phu{color:rgba(255,255,255,.85)}
+  @media (max-width:760px){ .the-nguoi{grid-template-columns:1fr} }
 
   /* ===== Hero ===== */
   .hero{background:var(--men-lam);color:#fff;overflow:hidden}
@@ -177,6 +201,14 @@
 </head>
 <body>
 
+<div class="bang-de-tai">
+  <div class="khung">
+    <p class="loai">Đề tài Khoa học kỹ thuật năm học 2025–2026, lĩnh vực Khoa học xã hội và hành vi</p>
+    <p class="ten-de-tai">Tác động của các biện pháp truyền thông tích cực đến nhận thức về giá trị bữa cơm gia đình của học sinh Trường THPT Đức Linh</p>
+    <p class="thuc-hien"><span>Học sinh thực hiện: <b>Nguyễn Thảo My</b> (12T1), <b>Nguyễn Quỳnh Anh</b> (10T1)</span><span>Giáo viên hướng dẫn: <b>cô Nguyễn Thị Yến Phương</b></span></p>
+  </div>
+</div>
+
 <header class="dau">
   <div class="khung">
     <a class="logo" href="#">comnha<span>.io.vn</span></a>
@@ -189,6 +221,7 @@
         <li><a href="#hoat-dong">Kết nối</a></li>
         <li><a href="#thu-thach">Thử thách</a></li>
         <li><a href="#khao-sat">Khảo sát</a></li>
+        <li><a href="#nhom-thuc-hien">Nhóm thực hiện</a></li>
       </ul>
     </nav>
   </div>
@@ -423,6 +456,33 @@
     </div>
   </div>
 </section>
+<!-- ===== NHÓM THỰC HIỆN ===== -->
+<section class="phan nhom-th" id="nhom-thuc-hien">
+  <div class="khung">
+    <h2>Nhóm thực hiện</h2>
+    <p class="mo-dau">Trang web là sản phẩm truyền thông của đề tài nghiên cứu khoa học do học sinh Trường THPT Đức Linh thực hiện.</p>
+    <div class="the-nguoi">
+      <div class="nguoi gv">
+        <div class="anh-chu" aria-hidden="true">YP</div>
+        <p class="vai-tro">Giáo viên hướng dẫn</p>
+        <h3>Cô Nguyễn Thị Yến Phương</h3>
+        <p class="phu">Tổ trưởng tổ Ngữ Văn</p>
+      </div>
+      <div class="nguoi">
+        <div class="anh-chu" aria-hidden="true">TM</div>
+        <p class="vai-tro">Học sinh thực hiện</p>
+        <h3>Nguyễn Thảo My</h3>
+        <p class="phu">Lớp 12T1</p>
+      </div>
+      <div class="nguoi">
+        <div class="anh-chu" aria-hidden="true">QA</div>
+        <p class="vai-tro">Học sinh thực hiện</p>
+        <h3>Nguyễn Quỳnh Anh</h3>
+        <p class="phu">Lớp 10T1</p>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
 <footer>
@@ -433,7 +493,7 @@
       <p>Tác động của các biện pháp truyền thông tích cực đến nhận thức về giá trị bữa cơm gia đình của học sinh Trường THPT Đức Linh</p>
     </div>
     <div>
-      <p>Nhóm thực hiện: <span data-sua="nhom">Nguyễn Thảo My 12T1, Nguyễn Quỳnh Anh 10T1</span></p>
+      <p>Học sinh thực hiện: Nguyễn Thảo My 12T1, Nguyễn Quỳnh Anh 10T1</p>
       <p>Giáo viên hướng dẫn: cô Nguyễn Thị Yến Phương</p>
       <p>Tổ trưởng tổ Ngữ Văn</p>
       <p>Trường THPT Đức Linh</p>
@@ -451,7 +511,6 @@ const CAU_HINH = {
     tiktok:  "https://tiktok.com/",            // dán link kênh TikTok
     khaosat: "https://forms.gle/"              // dán link Google Form
   },
-  nhom: "(điền tên học sinh)",
   // Ảnh thử thách: thêm đường dẫn ảnh (vd "anh/ban-a.jpg") và chú thích
   anhThuThach: [
     // { anh: "anh/bua-com-1.jpg", chuThich: "Bữa cơm nhà bạn Lan, lớp 11A2" }
@@ -464,7 +523,6 @@ document.querySelectorAll("[data-link]").forEach(a => {
   const url = CAU_HINH.lienKet[a.dataset.link];
   if (url) a.href = url;
 });
-document.querySelectorAll('[data-sua="nhom"]').forEach(el => el.textContent = CAU_HINH.nhom);
 
 // Menu trên điện thoại
 const nutMenu = document.querySelector(".nut-menu"), menu = document.getElementById("menu");
