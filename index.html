@@ -164,17 +164,70 @@
   @media (max-width:760px){ .kenh{grid-template-columns:1fr} }
 
   /* Thử thách */
-  .thu-thach .khung{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .thu-thach-tren{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
   .luat{margin:0;padding-left:1.2em}
   .luat li{margin-bottom:10px}
   .hashtag{font-size:26px;color:var(--men-lam);margin:18px 0 0}
   :root[data-theme="dark"] .hashtag{color:var(--lua)}
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hashtag{color:var(--lua)} }
-  .thu-vien{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .thu-vien figure{margin:0;aspect-ratio:1;border-radius:14px;background:var(--lam-nhat);display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .thu-vien img{width:100%;height:100%;object-fit:cover}
-  .thu-vien .trong{grid-column:1/-1;aspect-ratio:auto;padding:36px 20px;text-align:center;color:var(--chu-phu);border:2px dashed var(--men-lam);background:transparent}
-  @media (max-width:760px){ .thu-thach .khung{grid-template-columns:1fr;gap:32px} }
+  @media (max-width:760px){ .thu-thach-tren{grid-template-columns:1fr;gap:32px} }
+
+  /* Form gửi ảnh */
+  .the-gui{background:var(--the);border:3px solid var(--men-lam);border-radius:24px;padding:clamp(20px,4vw,32px);display:grid;gap:16px}
+  .the-gui h3{margin:0;font-size:24px;font-weight:800}
+  .chon-anh{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;aspect-ratio:4/3;border:3px dashed var(--men-lam);border-radius:18px;background:var(--lam-nhat);cursor:pointer;overflow:hidden;text-align:center;padding:16px}
+  .chon-anh:hover{border-style:solid}
+  .chon-anh:focus-within{outline:3px solid var(--lua);outline-offset:3px}
+  .chon-anh input{position:absolute;inset:0;opacity:0;cursor:pointer}
+  .chon-anh .bieu-tuong{font-size:44px;line-height:1}
+  .chon-anh strong{font-size:18px}
+  .chon-anh small{color:var(--chu-phu);font-size:14px}
+  .chon-anh img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+  .chon-anh.co-anh img{display:block}
+  .chon-anh .doi-anh{position:absolute;right:10px;bottom:10px;background:rgba(22,33,62,.8);color:#fff;font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;display:none}
+  .chon-anh.co-anh .doi-anh{display:block}
+  .hai-cot{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}
+  .o-nhap label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
+  .o-nhap input,.o-nhap textarea{width:100%;font:inherit;font-size:16px;padding:12px 14px;border-radius:12px;border:2px solid #C4CFE8;background:var(--su-trang);color:var(--muc)}
+  .o-nhap textarea{resize:vertical;min-height:84px}
+  .o-nhap input:focus,.o-nhap textarea:focus{border-color:var(--men-lam);outline:none}
+  .dem-chu{display:block;text-align:right;font-size:13px;color:var(--chu-phu);margin-top:4px}
+  .dong-y{display:flex;gap:12px;align-items:flex-start;font-size:15px;cursor:pointer}
+  .dong-y input{width:22px;height:22px;accent-color:var(--men-lam);flex:none;margin-top:2px}
+  .the-gui button[type=submit]{justify-self:start;background:var(--men-lam);color:#fff;border:0}
+  .the-gui button[type=submit]:hover{background:#274BA8}
+  .the-gui button[disabled]{opacity:.6;cursor:wait}
+  .trang-thai-gui{margin:0;font-weight:500;min-height:1.5em}
+  .trang-thai-gui.loi{color:var(--ot)}
+  .trang-thai-gui.xong{color:#2E7D32}
+  .ghi-chu-duyet{margin:0;font-size:14px;color:var(--chu-phu)}
+
+  /* Góc bếp nhà mình: bức tường ảnh */
+  .goc-bep{margin-top:72px}
+  .goc-bep-dau{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin-bottom:28px}
+  .goc-bep h3{margin:0;font-size:clamp(28px,4.5vw,40px);font-weight:800;letter-spacing:-.02em}
+  .goc-bep .so-anh{margin:0;color:var(--chu-phu)}
+  .luoi-anh{columns:3 250px;column-gap:26px}
+  .anh-the{break-inside:avoid;display:block;width:100%;margin:0 0 28px;padding:12px 12px 16px;background:#fff;border:0;border-radius:6px;box-shadow:0 12px 28px rgba(22,33,62,.16);transform:rotate(var(--xoay,0deg));transition:transform .25s ease,box-shadow .25s ease;cursor:zoom-in;text-align:left;font:inherit;color:#16213E;position:relative}
+  .anh-the:hover,.anh-the:focus-visible{transform:rotate(0) scale(1.02);box-shadow:0 18px 36px rgba(22,33,62,.22)}
+  .anh-the::before{content:"";position:absolute;top:-10px;left:50%;width:76px;height:22px;margin-left:-38px;background:rgba(233,178,51,.75);transform:rotate(-3deg);border-radius:2px}
+  .anh-the img{display:block;width:100%;height:auto;border-radius:3px;background:#EEF1F8}
+  .anh-the .cam-nhan{display:block;font-family:"Patrick Hand","Comic Sans MS",cursive;font-size:21px;line-height:1.3;margin:12px 4px 6px;color:#16213E}
+  .anh-the .ai{display:block;font-size:14px;color:#4A5670;margin:0 4px}
+  .nhan-mau{position:absolute;top:22px;right:22px;background:var(--ot);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
+  .luoi-trong{border:2px dashed var(--men-lam);border-radius:18px;padding:40px 20px;text-align:center;color:var(--chu-phu)}
+
+  /* Xem ảnh lớn */
+  dialog.xem-anh{border:0;padding:0;background:transparent;max-width:min(94vw,1000px);width:100%;color:#fff}
+  dialog.xem-anh::backdrop{background:rgba(10,15,30,.9)}
+  .xem-anh figure{margin:0;text-align:center}
+  .xem-anh img{max-width:100%;max-height:74vh;border-radius:8px;display:block;margin:0 auto}
+  .xem-anh figcaption{margin-top:14px}
+  .xem-anh .cam-nhan{font-family:"Patrick Hand","Comic Sans MS",cursive;font-size:26px;color:var(--lua);display:block}
+  .xem-anh .ai{opacity:.85;font-size:15px}
+  .dieu-khien{display:flex;justify-content:center;gap:12px;margin-top:16px}
+  .dieu-khien button{font:inherit;font-weight:700;background:rgba(255,255,255,.14);color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:999px;padding:10px 20px;cursor:pointer}
+  .dieu-khien button:hover{background:rgba(255,255,255,.25)}
 
   /* Lời hứa nhỏ */
   .loi-hua{background:var(--lam-nhat)}
@@ -414,20 +467,66 @@
 <!-- ===== THỬ THÁCH ===== -->
 <section class="phan thu-thach" id="thu-thach">
   <div class="khung">
-    <div>
-      <h2>Thử thách "Vào bếp cùng mẹ"</h2>
-      <p class="mo-dau" style="margin-bottom:24px">Không cần nấu ngon, chỉ cần nấu cùng nhau.</p>
-      <ol class="luat">
-        <li>Cùng mẹ, bố, ông bà hoặc anh chị nấu một bữa cơm cho cả nhà.</li>
-        <li>Chụp một tấm ảnh khi đang nấu hoặc khi cả nhà ngồi quanh mâm.</li>
-        <li>Viết một câu về điều bạn nhận ra trong bữa cơm đó.</li>
-        <li>Đăng lên Facebook hoặc TikTok ở chế độ công khai kèm hashtag bên dưới, hoặc gửi tin nhắn cho Fanpage của nhóm.</li>
-      </ol>
-      <p class="hashtag tay">#VeAnComNha #ComNhaDucLinh</p>
+    <div class="thu-thach-tren">
+      <div>
+        <h2>Thử thách "Vào bếp cùng mẹ"</h2>
+        <p class="mo-dau" style="margin-bottom:24px">Không cần nấu ngon, chỉ cần nấu cùng nhau.</p>
+        <ol class="luat">
+          <li>Cùng mẹ, bố, ông bà hoặc anh chị nấu một bữa cơm cho cả nhà.</li>
+          <li>Chụp một tấm ảnh khi đang nấu hoặc khi cả nhà ngồi quanh mâm.</li>
+          <li>Viết một câu về điều bạn nhận ra trong bữa cơm đó.</li>
+          <li>Gửi ảnh ngay tại đây. Bạn cũng có thể đăng lên Facebook, TikTok kèm hashtag bên dưới.</li>
+        </ol>
+        <p class="hashtag tay">#VeAnComNha #ComNhaDucLinh</p>
+      </div>
+
+      <form class="the-gui" id="form-gui" novalidate>
+        <h3>Gửi ảnh của bạn</h3>
+        <label class="chon-anh" id="chon-anh">
+          <input type="file" id="tep-anh" accept="image/*" aria-label="Chọn hoặc chụp ảnh">
+          <span class="bieu-tuong" aria-hidden="true">📷</span>
+          <strong>Chọn hoặc chụp ảnh</strong>
+          <small>Ảnh JPG, PNG; trên điện thoại có thể chụp trực tiếp</small>
+          <img id="xem-truoc" alt="Ảnh bạn vừa chọn">
+          <span class="doi-anh">Đổi ảnh khác</span>
+        </label>
+        <div class="hai-cot">
+          <div class="o-nhap"><label for="ten">Tên hiển thị</label><input id="ten" maxlength="40" placeholder="VD: Thảo My" autocomplete="off"></div>
+          <div class="o-nhap"><label for="lop">Lớp</label><input id="lop" maxlength="8" placeholder="VD: 12T1" autocomplete="off"></div>
+        </div>
+        <div class="o-nhap">
+          <label for="cam-nhan">Điều bạn nhận ra trong bữa cơm này</label>
+          <textarea id="cam-nhan" maxlength="150" placeholder="VD: Hóa ra kho cá lâu hơn mình tưởng. Cảm ơn mẹ!"></textarea>
+          <span class="dem-chu" id="dem-chu">0/150</span>
+        </div>
+        <label class="dong-y"><input type="checkbox" id="dong-y">Em và gia đình đồng ý cho đăng ảnh này lên trang comnha.io.vn.</label>
+        <button class="nut" type="submit" id="nut-gui">Gửi ảnh</button>
+        <p class="trang-thai-gui" id="trang-thai-gui" aria-live="polite"></p>
+        <p class="ghi-chu-duyet">Ảnh sẽ xuất hiện ở Góc bếp nhà mình sau khi thầy cô duyệt.</p>
+      </form>
     </div>
-    <div class="thu-vien" id="thu-vien" aria-label="Ảnh các bạn gửi về"></div>
+
+    <div class="goc-bep">
+      <div class="goc-bep-dau">
+        <h3>Góc bếp nhà mình</h3>
+        <p class="so-anh" id="so-anh"></p>
+      </div>
+      <div class="luoi-anh" id="luoi-anh" aria-label="Ảnh các bạn gửi về"></div>
+    </div>
   </div>
 </section>
+
+<dialog class="xem-anh" id="xem-anh" aria-label="Xem ảnh lớn">
+  <figure>
+    <img id="anh-lon" alt="">
+    <figcaption><span class="cam-nhan" id="lon-cam-nhan"></span><span class="ai" id="lon-ai"></span></figcaption>
+  </figure>
+  <div class="dieu-khien">
+    <button type="button" id="nut-truoc">Ảnh trước</button>
+    <button type="button" id="nut-dong">Đóng</button>
+    <button type="button" id="nut-sau">Ảnh sau</button>
+  </div>
+</dialog>
 
 <!-- ===== LỜI HỨA ===== -->
 <section class="phan loi-hua" id="loi-hua">
@@ -501,6 +600,7 @@
   </div>
 </footer>
 
+<!-- Ảnh thử thách thêm bằng tay: file này được tạo bởi công cụ quan-tri-anh.html -->
 <script>
 /* =========================================================
    PHẦN CẦN CHỈNH SỬA: chỉ cần sửa trong khối CAU_HINH này
@@ -511,9 +611,19 @@ const CAU_HINH = {
     tiktok:  "https://tiktok.com/",            // dán link kênh TikTok
     khaosat: "https://forms.gle/"              // dán link Google Form
   },
-  // Ảnh thử thách: thêm đường dẫn ảnh (vd "anh/ban-a.jpg") và chú thích
+  // ===== GỬI ẢNH THỬ THÁCH (dịch vụ lưu ảnh miễn phí Cloudinary) =====
+  // Điền 2 thông tin lấy từ tài khoản Cloudinary của nhóm (xem hướng dẫn).
+  // Để trống thì trang vẫn chạy, chỉ là nút "Gửi ảnh" chưa hoạt động.
+  cloudinary: {
+    cloudName: "",            // VD: "comnha"
+    uploadPreset: "",         // VD: "comnha_gui_anh" (loại Unsigned)
+    tagDaDuyet: "da-duyet"    // ảnh gắn tag này mới hiện lên Góc bếp
+  },
+  // Hiện 4 ảnh mẫu để xem thử giao diện. Đổi thành false khi đã có ảnh thật.
+  hienAnhMau: true,
+  // Có thể tự thêm ảnh thủ công (đặt ảnh trong thư mục anh/ cạnh index.html)
   anhThuThach: [
-    // { anh: "anh/bua-com-1.jpg", chuThich: "Bữa cơm nhà bạn Lan, lớp 11A2" }
+    // { anh: "anh/bua-com-1.jpg", ten: "Thảo My", lop: "12T1", camNhan: "Lần đầu tự kho cá cho cả nhà." }
   ]
 };
 /* ========================================================= */
@@ -542,17 +652,150 @@ nutCat.addEventListener("click", () => {
   loiMam.textContent = daCat ? "Giờ thì cả nhà đã thấy mặt nhau rồi." : "";
 });
 
-// Thư viện ảnh thử thách
-const thuVien = document.getElementById("thu-vien");
-if (CAU_HINH.anhThuThach.length === 0) {
-  thuVien.innerHTML = `<figure class="trong"><span class="tay" style="font-size:22px">Ảnh bữa cơm của các bạn sẽ xuất hiện ở đây.<br>Hãy là người đầu tiên gửi ảnh!</span></figure>`;
-} else {
-  CAU_HINH.anhThuThach.forEach(a => {
-    const f = document.createElement("figure");
-    f.innerHTML = `<img src="${a.anh}" alt="${a.chuThich}" loading="lazy">`;
-    thuVien.appendChild(f);
+// ===== THỬ THÁCH: GỬI ẢNH =====
+const CL = CAU_HINH.cloudinary;
+const daBatGui = CL.cloudName && CL.uploadPreset;
+const formGui = document.getElementById("form-gui"), tepAnh = document.getElementById("tep-anh");
+const oChon = document.getElementById("chon-anh"), xemTruoc = document.getElementById("xem-truoc");
+const oCamNhan = document.getElementById("cam-nhan"), demChu = document.getElementById("dem-chu");
+const trangThai = document.getElementById("trang-thai-gui"), nutGui = document.getElementById("nut-gui");
+const baoTT = (t, loai = "") => { trangThai.textContent = t; trangThai.className = "trang-thai-gui " + loai; };
+
+oCamNhan.addEventListener("input", () => demChu.textContent = oCamNhan.value.length + "/150");
+tepAnh.addEventListener("change", () => {
+  const f = tepAnh.files[0];
+  if (!f) return;
+  if (!f.type.startsWith("image/")) { baoTT("Tệp bạn chọn không phải ảnh. Hãy chọn ảnh JPG hoặc PNG.", "loi"); tepAnh.value = ""; return; }
+  xemTruoc.src = URL.createObjectURL(f); oChon.classList.add("co-anh"); baoTT("");
+});
+
+// Thu nhỏ ảnh trước khi gửi (tối đa 1600px) để gửi nhanh, tiết kiệm dung lượng
+function nenAnh(file) {
+  return new Promise((ok, loi) => {
+    const img = new Image();
+    img.onload = () => {
+      const tile = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(img.width * tile); c.height = Math.round(img.height * tile);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(b => b ? ok(b) : loi(new Error("nen")), "image/jpeg", 0.85);
+    };
+    img.onerror = () => loi(new Error("doc"));
+    img.src = URL.createObjectURL(file);
   });
 }
+const thoat = t => t.trim().replace(/[\\|=]/g, m => "\\" + m);
+
+formGui.addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = tepAnh.files[0], ten = document.getElementById("ten").value.trim(), lop = document.getElementById("lop").value.trim();
+  if (!f) return baoTT("Bạn chưa chọn ảnh.", "loi");
+  if (!ten) return baoTT("Bạn hãy nhập tên hiển thị.", "loi");
+  if (!document.getElementById("dong-y").checked) return baoTT("Bạn cần đánh dấu ô đồng ý của gia đình trước khi gửi.", "loi");
+  if (!daBatGui) return baoTT("Hiện chưa gửi ảnh trực tiếp tại đây được. Bạn gửi ảnh kèm tên, lớp và câu cảm nhận qua tin nhắn Fanpage của nhóm nhé!", "loi");
+  nutGui.disabled = true; baoTT("Đang gửi ảnh...");
+  try {
+    const blob = await nenAnh(f);
+    const fd = new FormData();
+    fd.append("file", blob, "anh.jpg");
+    fd.append("upload_preset", CL.uploadPreset);
+    fd.append("context", `ten=${thoat(ten)}|lop=${thoat(lop)}|cam_nhan=${thoat(oCamNhan.value)}`);
+    const r = await fetch(`https://api.cloudinary.com/v1_1/${CL.cloudName}/image/upload`, { method: "POST", body: fd });
+    if (!r.ok) throw new Error(r.status);
+    formGui.reset(); oChon.classList.remove("co-anh"); demChu.textContent = "0/150";
+    baoTT("Đã gửi ảnh. Cảm ơn bạn! Ảnh sẽ hiện lên sau khi thầy cô duyệt.", "xong");
+  } catch (err) {
+    baoTT("Chưa gửi được ảnh. Kiểm tra kết nối mạng rồi bấm Gửi ảnh lần nữa.", "loi");
+  } finally { nutGui.disabled = false; }
+});
+
+// ===== THỬ THÁCH: BỨC TƯỜNG ẢNH =====
+const luoi = document.getElementById("luoi-anh"), soAnh = document.getElementById("so-anh");
+let dsAnh = [];
+const anhMau = (nen, cao, mon) => "data:image/svg+xml," + encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 ${cao}"><rect width="400" height="${cao}" fill="${nen}"/>
+   <circle cx="200" cy="${cao/2}" r="${cao*0.36}" fill="#A8703A"/><circle cx="200" cy="${cao/2}" r="${cao*0.33}" fill="#B98049"/>
+   <ellipse cx="200" cy="${cao/2}" rx="62" ry="38" fill="#fff" stroke="#1D3A8A" stroke-width="5"/>${mon}
+   <circle cx="120" cy="${cao/2+60}" r="26" fill="#fff" stroke="#1D3A8A" stroke-width="5"/><circle cx="285" cy="${cao/2-55}" r="26" fill="#fff" stroke="#1D3A8A" stroke-width="5"/>
+   <circle cx="275" cy="${cao/2+65}" r="22" fill="#fff" stroke="#1D3A8A" stroke-width="4"/><circle cx="275" cy="${cao/2+65}" r="14" fill="#8DB84A"/></svg>`);
+const MAU = [
+  { src: anhMau("#F4D9B0", 300, '<path d="M165 150 q30 -24 60 0 q-30 24 -60 0z" fill="#D9892E"/>'), ten: "Thảo My", lop: "12T1", camNhan: "Lần đầu tự kho cá, mẹ khen mặn nhưng vẫn ăn hết." },
+  { src: anhMau("#DCE6F7", 460, '<path d="M170 225 q20 -12 60 0 M175 238 q25 -8 50 2" stroke="#3E8E3E" stroke-width="7" fill="none" stroke-linecap="round"/>'), ten: "Quỳnh Anh", lop: "10T1", camNhan: "Nhặt rau muống cùng bà, nghe bà kể chuyện hồi xưa." },
+  { src: anhMau("#F7E7C4", 360, '<circle cx="200" cy="180" r="20" fill="#E9B233"/><circle cx="178" cy="176" r="10" fill="#C8342B"/>'), ten: "Minh Khang", lop: "11A2", camNhan: "Bữa trứng chiên đầu tiên của mình. Bố chấm 10 điểm!" },
+  { src: anhMau("#E4EDD9", 300, '<path d="M165 150 q35 -20 70 0 q-35 20 -70 0z" fill="#C8842B"/>'), ten: "Gia Hân", lop: "12X3", camNhan: "Cả nhà cất điện thoại, nói chuyện được thật lâu." }
+].map(a => ({ ...a, lon: a.src, mau: true }));
+
+function ve() {
+  luoi.innerHTML = "";
+  if (!dsAnh.length) {
+    luoi.innerHTML = '<div class="luoi-trong tay" style="font-size:22px">Ảnh bữa cơm của các bạn sẽ xuất hiện ở đây.<br>Hãy là người đầu tiên gửi ảnh!</div>';
+    soAnh.textContent = ""; return;
+  }
+  const soThat = dsAnh.filter(a => !a.mau).length;
+  soAnh.textContent = soThat ? `${soThat} bữa cơm đã được chia sẻ` : "Đang hiện ảnh mẫu";
+  const xoay = ["-1.6deg", "1.2deg", "-0.6deg", "1.8deg", "-1.1deg", "0.7deg"];
+  dsAnh.forEach((a, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "anh-the"; b.style.setProperty("--xoay", xoay[i % xoay.length]);
+    const img = document.createElement("img"); img.src = a.src; img.loading = "lazy";
+    img.alt = `Ảnh bữa cơm của ${a.ten || "một bạn học sinh"}`;
+    const cn = document.createElement("span"); cn.className = "cam-nhan"; cn.textContent = a.camNhan || "";
+    const ai = document.createElement("span"); ai.className = "ai"; ai.textContent = [a.ten, a.lop].filter(Boolean).join(", lớp ");
+    b.append(img); if (a.camNhan) b.append(cn); b.append(ai);
+    if (a.mau) { const m = document.createElement("span"); m.className = "nhan-mau"; m.textContent = "Ảnh mẫu"; b.append(m); }
+    b.addEventListener("click", () => moAnh(i));
+    luoi.append(b);
+  });
+}
+
+async function taiAnh() {
+  let tuMay = [];
+  if (CL.cloudName) {
+    try {
+      const r = await fetch(`https://res.cloudinary.com/${CL.cloudName}/image/list/${CL.tagDaDuyet}.json?t=${Date.now()}`);
+      if (r.ok) {
+        const d = await r.json();
+        tuMay = (d.resources || []).sort((x, y) => (y.created_at || "").localeCompare(x.created_at || "")).map(x => {
+          const c = (x.context && x.context.custom) || {};
+          const goc = `https://res.cloudinary.com/${CL.cloudName}/image/upload/`;
+          const duoi = `v${x.version}/${x.public_id}.${x.format}`;
+          return { src: goc + "c_limit,w_700,q_auto,f_auto/" + duoi, lon: goc + "c_limit,w_1600,q_auto,f_auto/" + duoi, ten: c.ten, lop: c.lop, camNhan: c.cam_nhan };
+        });
+      }
+    } catch (e) { /* chưa có ảnh được duyệt hoặc mất mạng */ }
+  }
+  const tuFile = Array.isArray(window.ANH_THU_THACH) ? window.ANH_THU_THACH : [];
+  const thuCong = [...tuFile, ...CAU_HINH.anhThuThach].map(a => ({ src: a.anh, lon: a.anh, ten: a.ten, lop: a.lop, camNhan: a.camNhan }));
+  dsAnh = [...tuMay, ...thuCong];
+  if (!dsAnh.length && CAU_HINH.hienAnhMau) dsAnh = MAU;
+  ve();
+}
+
+// Xem ảnh lớn
+const hopXem = document.getElementById("xem-anh");
+let dangXem = 0;
+function moAnh(i) {
+  dangXem = (i + dsAnh.length) % dsAnh.length;
+  const a = dsAnh[dangXem];
+  document.getElementById("anh-lon").src = a.lon;
+  document.getElementById("anh-lon").alt = `Ảnh bữa cơm của ${a.ten || "một bạn học sinh"}`;
+  document.getElementById("lon-cam-nhan").textContent = a.camNhan || "";
+  document.getElementById("lon-ai").textContent = [a.ten, a.lop].filter(Boolean).join(", lớp ");
+  if (!hopXem.open) hopXem.showModal();
+}
+document.getElementById("nut-truoc").onclick = () => moAnh(dangXem - 1);
+document.getElementById("nut-sau").onclick = () => moAnh(dangXem + 1);
+document.getElementById("nut-dong").onclick = () => hopXem.close();
+hopXem.addEventListener("click", e => { if (e.target === hopXem) hopXem.close(); });
+hopXem.addEventListener("keydown", e => { if (e.key === "ArrowLeft") moAnh(dangXem - 1); if (e.key === "ArrowRight") moAnh(dangXem + 1); });
+// Nạp file ảnh thêm bằng tay, luôn lấy bản mới nhất (tránh trình duyệt giữ bản cũ)
+(function () {
+  const sc = document.createElement("script");
+  sc.src = "anh-thu-thach.js?v=" + Date.now();
+  sc.onload = taiAnh;
+  sc.onerror = () => { console.warn("Không tìm thấy file anh-thu-thach.js cạnh index.html"); taiAnh(); };
+  document.head.append(sc);
+})();
 
 // Lời hứa nhỏ (lưu trên máy người xem)
 const KHOA = "comnha-loi-hua";
