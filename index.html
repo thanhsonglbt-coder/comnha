@@ -92,23 +92,41 @@
   .gia-tri p{margin:0;color:var(--chu-phu)}
   @media (max-width:760px){ .gia-tri{grid-template-columns:1fr;gap:28px} }
 
-  /* Tiến trình: đúng là một trình tự nên có đánh số */
-  .tien-trinh{background:var(--lam-nhat)}
-  .buoc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:b}
-  .buoc li{padding:0 24px 0 0;position:relative}
-  .buoc li::before{counter-increment:b;content:counter(b);display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:var(--men-lam);color:#fff;font-weight:800;font-size:22px;margin-bottom:16px;position:relative;z-index:1}
-  .buoc li:not(:last-child)::after{content:"";position:absolute;top:26px;left:52px;right:0;border-top:3px dotted var(--men-lam);opacity:.5}
-  .buoc h3{margin:0 0 6px;font-size:20px}
-  .buoc p{margin:0;color:var(--chu-phu)}
-  .buoc .thoi-gian{display:inline-block;margin-top:10px;font-weight:700;font-size:14px;color:var(--men-lam)}
-  :root[data-theme="dark"] .buoc .thoi-gian{color:var(--lua)}
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .buoc .thoi-gian{color:var(--lua)} }
-  @media (max-width:760px){
-    .buoc{grid-template-columns:1fr;gap:28px}
-    .buoc li{padding:0 0 0 72px}
-    .buoc li::before{position:absolute;left:0;top:0}
-    .buoc li:not(:last-child)::after{top:52px;bottom:-28px;left:25px;right:auto;border-top:none;border-left:3px dotted var(--men-lam)}
-  }
+
+  /* Bài viết */
+  .bai-viet{background:var(--lam-nhat)}
+  .danh-sach-bai{display:grid;gap:28px}
+  article.bai{background:var(--the);border-radius:20px;padding:clamp(24px,5vw,48px);max-width:760px}
+  .bai .chuyen-muc{font-weight:700;font-size:14px;color:var(--go);margin:0 0 8px}
+  .bai h3{font-size:clamp(26px,4.5vw,36px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px;font-weight:800}
+  .bai .tac-gia{color:var(--chu-phu);font-size:15px;margin:0 0 22px}
+  .bai p{margin:0 0 16px;font-size:18px;line-height:1.75}
+  .bai .sa-pa{font-size:20px;font-weight:500}
+  .bai h4{font-size:21px;margin:28px 0 10px}
+  .bai blockquote{margin:24px 0;padding:4px 0 4px 20px;border-left:5px solid var(--lua);font-size:24px;line-height:1.4}
+  .bai details summary{cursor:pointer;display:inline-block;font-weight:700;color:#fff;background:var(--men-lam);padding:12px 22px;border-radius:999px;list-style:none;margin-top:4px}
+  .bai details summary::-webkit-details-marker{display:none}
+  .bai details[open] summary{display:none}
+  .bai .nguon{font-size:14px;color:var(--chu-phu);border-top:1px solid var(--lam-nhat);padding-top:14px;margin-top:24px}
+
+  /* Infographic */
+  .info{background:var(--men-lam);color:#fff;border-radius:28px;padding:clamp(24px,5vw,56px);max-width:900px;margin:0 auto;position:relative;overflow:hidden}
+  .info::after{content:"";position:absolute;right:-120px;top:-120px;width:320px;height:320px;border-radius:50%;border:28px solid rgba(233,178,51,.18)}
+  .info h3{font-size:clamp(34px,7vw,64px);line-height:1;font-weight:900;letter-spacing:-.03em;margin:0 0 8px;position:relative}
+  .info .phu-de{font-size:18px;opacity:.85;margin:0 0 36px;max-width:30em}
+  .so-lieu{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:44px}
+  .so-lieu div{border-top:3px solid var(--lua);padding-top:14px}
+  .so-lieu b{display:block;font-size:clamp(36px,6vw,54px);line-height:1;font-weight:900;color:var(--lua);margin-bottom:8px}
+  .so-lieu span{font-size:15px;line-height:1.45;display:block;opacity:.92}
+  .bi-quyet-tieu-de{font-size:24px;font-weight:800;margin:0 0 18px}
+  .bi-quyet{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;counter-reset:q}
+  .bi-quyet li{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start}
+  .bi-quyet li::before{counter-increment:q;content:counter(q);width:48px;height:48px;border-radius:50%;background:#fff;color:var(--men-lam);font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;border:4px solid var(--lua)}
+  .bi-quyet strong{display:block;font-size:18px;margin-bottom:2px}
+  .bi-quyet span{font-size:15px;opacity:.88;line-height:1.5}
+  .info .chot{margin:40px 0 0;font-size:30px;color:var(--lua);text-align:center}
+  .info .nguon{font-size:13px;opacity:.7;margin:18px 0 0;line-height:1.5}
+  @media (max-width:760px){ .so-lieu{grid-template-columns:1fr;gap:18px} .bi-quyet{grid-template-columns:1fr} }
 
   /* Hoạt động truyền thông */
   .kenh{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--lam-nhat);border-radius:20px;overflow:hidden}
@@ -120,19 +138,6 @@
   :root[data-theme="dark"] .kenh a.lien-ket{color:var(--lua)}
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .kenh a.lien-ket{color:var(--lua)} }
   @media (max-width:760px){ .kenh{grid-template-columns:1fr} }
-
-  /* Kết quả trước - sau */
-  .ket-qua{background:var(--men-lam);color:#fff}
-  .ket-qua .mo-dau{color:rgba(255,255,255,.85)}
-  .nhan-minh-hoa{display:inline-block;background:var(--lua);color:var(--muc);font-weight:700;font-size:14px;padding:4px 12px;border-radius:999px;margin-bottom:24px}
-  .bieu-do{display:grid;gap:30px;max-width:760px}
-  .cot-cau h3{font-size:17px;font-weight:500;margin:0 0 10px}
-  .thanh{display:grid;grid-template-columns:92px 1fr 52px;align-items:center;gap:10px;margin:6px 0;font-size:15px}
-  .ray{height:18px;background:rgba(255,255,255,.14);border-radius:9px;overflow:hidden}
-  .ray i{display:block;height:100%;border-radius:9px;width:0;transition:width 1.1s ease}
-  .ray i.truoc{background:rgba(255,255,255,.55)}
-  .ray i.sau{background:var(--lua)}
-  .thanh b{text-align:right}
 
   /* Thử thách */
   .thu-thach .khung{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
@@ -179,8 +184,9 @@
       <button class="nut-menu" aria-expanded="false" aria-controls="menu">Menu</button>
       <ul id="menu">
         <li><a href="#vi-sao">Vì sao</a></li>
-        <li><a href="#hoat-dong">Hoạt động</a></li>
-        <li><a href="#ket-qua">Kết quả</a></li>
+        <li><a href="#bai-viet">Bài viết</a></li>
+        <li><a href="#infographic">Infographic</a></li>
+        <li><a href="#hoat-dong">Kết nối</a></li>
         <li><a href="#thu-thach">Thử thách</a></li>
         <li><a href="#khao-sat">Khảo sát</a></li>
       </ul>
@@ -278,36 +284,75 @@
   </div>
 </section>
 
-<!-- ===== TIẾN TRÌNH ===== -->
-<section class="phan tien-trinh" id="tien-trinh">
+<!-- ===== BÀI VIẾT ===== -->
+<section class="phan bai-viet" id="bai-viet">
   <div class="khung">
-    <h2>Chiến dịch diễn ra thế nào</h2>
-    <p class="mo-dau">Đây là một đề tài nghiên cứu khoa học. Nhóm đo nhận thức của các bạn trước và sau chiến dịch để biết truyền thông có thật sự tạo ra thay đổi hay không.</p>
-    <ol class="buoc">
-      <li>
-        <h3>Khảo sát lần 1</h3>
-        <p>Các bạn học sinh toàn trường trả lời phiếu ẩn danh về thói quen và suy nghĩ quanh bữa cơm gia đình.</p>
-        <span class="thoi-gian" data-sua="moc1">Tháng 10/2025</span>
-      </li>
-      <li>
-        <h3>Truyền thông tích cực</h3>
-        <p>Bài viết, video ngắn, phát thanh học đường và thử thách "Vào bếp cùng mẹ" diễn ra song song trong 1 đến 2 tháng.</p>
-        <span class="thoi-gian" data-sua="moc2">Tháng 11 và 12/2025</span>
-      </li>
-      <li>
-        <h3>Khảo sát lần 2</h3>
-        <p>Phát lại cùng bộ câu hỏi để so sánh trước và sau, đồng thời tìm ra kênh truyền thông tác động mạnh nhất.</p>
-        <span class="thoi-gian" data-sua="moc3">Tháng 1/2026</span>
-      </li>
-    </ol>
+    <h2>Bài viết</h2>
+    <p class="mo-dau">Những câu chuyện nhỏ quanh mâm cơm nhà. Bạn có bài muốn chia sẻ? Gửi cho Fanpage của nhóm nhé.</p>
+    <div class="danh-sach-bai">
+
+      <!-- Muốn thêm bài mới: sao chép nguyên khối <article> ... </article> này rồi sửa nội dung -->
+      <article class="bai">
+        <p class="chuyen-muc">Góc suy ngẫm</p>
+        <h3>Mâm cơm chiều, nơi cả nhà được là chính mình</h3>
+        <p class="tac-gia">Nhóm nghiên cứu KHKT, Trường THPT Đức Linh</p>
+        <p class="sa-pa">Ở quê mình, khoảng sáu giờ chiều, khi khói bếp còn vương sau hàng tre, thế nào cũng có một tiếng gọi vọng ra ngõ: “Về ăn cơm!”. Câu gọi ngắn lắm, nhưng nhiều người phải đi thật xa mới hiểu đó là âm thanh của bình yên.</p>
+        <details>
+          <summary>Đọc toàn bài</summary>
+          <h4>Trên mâm không chỉ có món ăn</h4>
+          <p>Một mâm cơm nhà mình thường giản dị: bát canh rau vừa hái ngoài vườn, đĩa cá kho keo lại màu cánh gián, chén nước mắm dầm ớt. Nhưng thứ được bày lên mâm nhiều nhất lại không nhìn thấy được. Đó là buổi chợ mẹ tranh thủ ghé sau giờ làm, là bố cố về sớm hơn một chút, là bà ngồi nhặt rau từ lúc nắng còn gắt. Mỗi món ăn là một phần thời gian của ai đó đã dành cho cả nhà.</p>
+          <p>Vì vậy, bữa cơm gia đình chưa bao giờ chỉ để no bụng. Đó là lúc hiếm hoi trong ngày mọi người cùng ngồi xuống một chỗ, cùng nhìn nhau và cùng nghe nhau nói.</p>
+          <blockquote class="tay">Có mặt ở mâm cơm chưa đủ. Phải có mặt cho nhau.</blockquote>
+          <h4>Khi mâm cơm ồn tiếng video mà vắng tiếng người</h4>
+          <p>Nhiều bữa cơm bây giờ không thiếu người, chỉ thiếu lời. Mẹ hỏi “Hôm nay ở trường thế nào?”, con “dạ, bình thường” cho qua, mắt vẫn dán vào màn hình. Bố vừa ăn vừa trả lời tin nhắn công việc. Không ai trách ai, nhưng ai cũng thấy thiếu một điều gì đó.</p>
+          <p>Chiếc điện thoại không có lỗi. Chỉ là nó rất giỏi kéo chúng ta đi xa khỏi những người đang ngồi ngay bên cạnh.</p>
+          <h4>Khoa học cũng nói như bà nội</h4>
+          <p>Ông bà mình vẫn dặn “ăn cơm nhà cho ấm”. Các nhà khoa học nói điều tương tự bằng số liệu: một nghiên cứu tổng hợp 17 công trình với hơn 182.000 trẻ em và thanh thiếu niên cho thấy những bạn ăn cùng gia đình từ 3 bữa mỗi tuần trở lên có thói quen ăn uống lành mạnh hơn. Viện Dinh dưỡng Quốc gia cũng khuyên mỗi gia đình nên cố giữ ít nhất một bữa ăn chung mỗi ngày, và trong bữa ăn hãy tắt tivi, cất điện thoại để dành trọn sự chú ý cho nhau.</p>
+          <h4>Tuổi mười bảy và những bữa cơm vội</h4>
+          <p>Với học sinh cuối cấp, bữa tối nhiều khi chỉ gói gọn trong mười lăm phút giữa hai ca học thêm. Nhưng mười lăm phút trọn vẹn vẫn quý hơn một tiếng đồng hồ lơ đãng. Một câu hỏi mẹ “hôm nay mẹ có mệt không?”, một lời khen “canh hôm nay ngon quá”, vậy là đủ để bữa cơm vội cũng thành bữa cơm ấm.</p>
+          <h4>Bắt đầu từ tối nay</h4>
+          <p>Không cần điều gì lớn lao. Tối nay, hãy thử úp điện thoại xuống bàn khi cầm đũa. Kể cho cả nhà nghe một chuyện vui ở lớp. Phụ mẹ dọn mâm sau khi ăn.</p>
+          <p>Rồi sẽ đến ngày chúng ta rời nhà đi học xa, đi làm xa, ăn những bữa cơm một mình ở phòng trọ. Khi ấy, điều ta nhớ nhất có lẽ không phải món gì, mà là tiếng gọi quen thuộc lúc chiều muộn: “Về ăn cơm!”.</p>
+          <p class="nguon">Tham khảo: Hammons &amp; Fiese (2011), tạp chí Pediatrics; Viện Dinh dưỡng Quốc gia, bài “Bữa cơm gia đình – liệu có còn hấp dẫn con trẻ trong thời đại đồ ăn nhanh?”.</p>
+        </details>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== INFOGRAPHIC ===== -->
+<section class="phan" id="infographic">
+  <div class="khung">
+    <h2>Infographic</h2>
+    <p class="mo-dau">Lưu lại, chia sẻ, hoặc dán lên góc bếp nhà bạn.</p>
+    <figure class="info" style="margin:0 auto" aria-label="Infographic: Bữa cơm đầm ấm">
+      <h3>Bữa cơm đầm ấm</h3>
+      <p class="phu-de">Chỉ cần khoảng 30 phút mỗi ngày để cả nhà thật sự ở bên nhau.</p>
+      <div class="so-lieu">
+        <div><b>3+</b><span>bữa ăn chung mỗi tuần gắn với thói quen ăn uống lành mạnh hơn ở trẻ em và thanh thiếu niên</span></div>
+        <div><b>1</b><span>bữa ăn chung mỗi ngày là điều Viện Dinh dưỡng Quốc gia khuyên các gia đình cố gắng duy trì</span></div>
+        <div><b>75%</b><span>phụ huynh trong một khảo sát ở Mỹ thừa nhận đã dùng thiết bị điện tử trong bữa ăn gia đình gần nhất</span></div>
+      </div>
+      <p class="bi-quyet-tieu-de">5 bí quyết cho mâm cơm ấm</p>
+      <ol class="bi-quyet">
+        <li><div><strong>Úp điện thoại xuống</strong><span>Cả nhà cùng làm, kể cả người lớn.</span></div></li>
+        <li><div><strong>Cùng vào bếp</strong><span>Nhặt rau, bày mâm, rửa bát: việc nhỏ mà gắn kết lớn.</span></div></li>
+        <li><div><strong>Hỏi một câu mở</strong><span>“Hôm nay có chuyện gì vui không?” thay vì “Được mấy điểm?”.</span></div></li>
+        <li><div><strong>Để chuyện điểm số lại sau</strong><span>Bữa cơm là lúc nghỉ ngơi, không phải lúc họp phụ huynh.</span></div></li>
+        <li><div><strong>Cảm ơn người nấu</strong><span>Một lời khen món ăn làm bữa cơm ngon thêm.</span></div></li>
+      </ol>
+      <p class="chot tay">Về ăn cơm nhà nhé!</p>
+      <p class="nguon">Nguồn số liệu: Hammons &amp; Fiese (2011), Pediatrics; Viện Dinh dưỡng Quốc gia; nghiên cứu trên JAMA Pediatrics (6/2026) do Báo Phụ nữ TP.HCM đưa tin.</p>
+    </figure>
   </div>
 </section>
 
 <!-- ===== HOẠT ĐỘNG ===== -->
 <section class="phan" id="hoat-dong">
   <div class="khung">
-    <h2>Những gì nhóm đang làm</h2>
-    <p class="mo-dau">Kết hợp truyền thông trên mạng và tại trường để thông điệp đến được với nhiều bạn nhất.</p>
+    <h2>Theo dõi và lan tỏa</h2>
+    <p class="mo-dau">Thông điệp “Về ăn cơm nhà” có mặt trên mạng và ngay tại trường.</p>
     <div class="kenh">
       <article>
         <h3>Bài viết và infographic</h3>
@@ -330,16 +375,6 @@
         <a class="lien-ket" href="#thu-thach">Xem cách tham gia</a>
       </article>
     </div>
-  </div>
-</section>
-
-<!-- ===== KẾT QUẢ ===== -->
-<section class="phan ket-qua" id="ket-qua">
-  <div class="khung">
-    <h2>Trước và sau chiến dịch</h2>
-    <p class="mo-dau">Tỷ lệ học sinh chọn mức "Đồng ý" hoặc "Rất đồng ý" (mức 4 và 5) ở một số câu hỏi trong phiếu khảo sát.</p>
-    <span class="nhan-minh-hoa" id="nhan-minh-hoa">Số liệu minh họa, sẽ cập nhật sau khảo sát lần 2</span>
-    <div class="bieu-do" id="bieu-do"></div>
   </div>
 </section>
 
@@ -416,14 +451,6 @@ const CAU_HINH = {
     khaosat: "https://forms.gle/"              // dán link Google Form
   },
   nhom: "(điền tên học sinh)",
-  // Đổi thành true khi đã có số liệu thật của khảo sát lần 2
-  daCoSoLieuThat: false,
-  ketQua: [
-    { cauHoi: "Thường xuyên dùng điện thoại khi ăn cơm cùng gia đình", truoc: 70, sau: 25 },
-    { cauHoi: "Bữa cơm là không gian quan trọng nhất để gắn kết gia đình", truoc: 40, sau: 85 },
-    { cauHoi: "Chủ động phụ cha mẹ nấu ăn, dọn mâm cơm", truoc: 35, sau: 60 },
-    { cauHoi: "Chủ động chia sẻ chuyện ở trường trong bữa cơm", truoc: 30, sau: 55 }
-  ],
   // Ảnh thử thách: thêm đường dẫn ảnh (vd "anh/ban-a.jpg") và chú thích
   anhThuThach: [
     // { anh: "anh/bua-com-1.jpg", chuThich: "Bữa cơm nhà bạn Lan, lớp 11A2" }
@@ -455,23 +482,6 @@ nutCat.addEventListener("click", () => {
   nutCat.textContent = daCat ? "Lấy điện thoại lại" : "Cất điện thoại đi";
   loiMam.textContent = daCat ? "Giờ thì cả nhà đã thấy mặt nhau rồi." : "";
 });
-
-// Biểu đồ trước - sau
-const bieuDo = document.getElementById("bieu-do");
-if (CAU_HINH.daCoSoLieuThat) document.getElementById("nhan-minh-hoa").textContent = "Số liệu thật từ hai đợt khảo sát";
-CAU_HINH.ketQua.forEach(k => {
-  const d = document.createElement("div");
-  d.className = "cot-cau";
-  d.innerHTML = `<h3>${k.cauHoi}</h3>
-    <div class="thanh"><span>Trước</span><div class="ray"><i class="truoc" data-w="${k.truoc}"></i></div><b>${k.truoc}%</b></div>
-    <div class="thanh"><span>Sau</span><div class="ray"><i class="sau" data-w="${k.sau}"></i></div><b>${k.sau}%</b></div>`;
-  bieuDo.appendChild(d);
-});
-const veThanh = () => bieuDo.querySelectorAll("i").forEach(i => i.style.width = i.dataset.w + "%");
-if ("IntersectionObserver" in window) {
-  const qs = new IntersectionObserver(e => { if (e[0].isIntersecting) { veThanh(); qs.disconnect(); } }, { threshold: .3 });
-  qs.observe(bieuDo);
-} else veThanh();
 
 // Thư viện ảnh thử thách
 const thuVien = document.getElementById("thu-vien");
