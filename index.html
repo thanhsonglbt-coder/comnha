@@ -155,6 +155,16 @@
     .chuyen-gia .noi-bat{grid-template-columns:1fr}
   }
 
+  /* Truyện tranh minh họa trong bài viết */
+  .truyen{margin:6px 0 26px}
+  .truyen .khung-tranh{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .truyen svg{display:block;width:100%;height:auto;border:4px solid #16213E;border-radius:6px;background:#fff;transform:rotate(var(--x,0deg))}
+  .truyen svg:nth-child(1){--x:-.8deg}
+  .truyen svg:nth-child(3){--x:.8deg}
+  .truyen svg text{font-family:"Patrick Hand","Comic Sans MS",cursive}
+  .truyen figcaption{font-size:14px;color:var(--chu-phu);margin-top:10px}
+  @media (max-width:760px){ .truyen .khung-tranh{grid-template-columns:1fr;max-width:380px} }
+
   /* Infographic */
   .info{background:var(--men-lam);color:#fff;border-radius:28px;padding:clamp(24px,5vw,56px);max-width:900px;margin:0 auto;position:relative;overflow:hidden}
   .info::after{content:"";position:absolute;right:-120px;top:-120px;width:320px;height:320px;border-radius:50%;border:28px solid rgba(233,178,51,.18)}
@@ -538,6 +548,140 @@
         <h3>Mâm cơm chiều, nơi cả nhà được là chính mình</h3>
         <p class="tac-gia">Nhóm nghiên cứu KHKT, Trường THPT Đức Linh</p>
         <p class="sa-pa">Ở quê mình, khoảng sáu giờ chiều, khi khói bếp còn vương sau hàng tre, thế nào cũng có một tiếng gọi vọng ra ngõ: “Về ăn cơm!”. Câu gọi ngắn lắm, nhưng nhiều người phải đi thật xa mới hiểu đó là âm thanh của bình yên.</p>
+        <!-- Truyện tranh 3 khung, vẽ bằng SVG -->
+        <figure class="truyen">
+          <div class="khung-tranh">
+            <svg viewBox="0 0 300 300" role="img" aria-label="Khung 1: Sáu giờ chiều, mẹ đứng trước nhà gọi con về ăn cơm, khói bếp bay lên sau hàng tre">
+              <defs><linearGradient id="tt-chieu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7B267"/><stop offset="1" stop-color="#F4845F"/></linearGradient></defs>
+              <rect width="300" height="300" fill="url(#tt-chieu)"/>
+              <circle cx="100" cy="168" r="22" fill="#FFD166"/>
+              <g stroke="#3E7A3E" stroke-width="6" stroke-linecap="round"><path d="M18 230 V90 M34 230 V70 M50 230 V100"/></g>
+              <g fill="#5FA05F"><ellipse cx="14" cy="96" rx="14" ry="5" transform="rotate(-25 14 96)"/><ellipse cx="44" cy="76" rx="14" ry="5" transform="rotate(25 44 76)"/><ellipse cx="58" cy="106" rx="13" ry="5" transform="rotate(-20 58 106)"/></g>
+              <rect y="228" width="300" height="72" fill="#8DB84A" stroke="#16213E" stroke-width="4"/>
+              <path d="M262 132 q-14 -16 0 -30 q14 -14 0 -30" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+              <rect x="150" y="160" width="130" height="70" fill="#FFF3D6" stroke="#16213E" stroke-width="4"/>
+              <polygon points="140,162 215,112 290,162" fill="#C8342B" stroke="#16213E" stroke-width="4" stroke-linejoin="round"/>
+              <rect x="252" y="122" width="16" height="26" fill="#A8703A" stroke="#16213E" stroke-width="4"/>
+              <rect x="232" y="182" width="32" height="48" fill="#A8703A" stroke="#16213E" stroke-width="4"/>
+              <rect x="166" y="180" width="34" height="28" fill="#FFD166" stroke="#16213E" stroke-width="4"/>
+              <!-- mẹ -->
+              <g transform="translate(120 0)">
+                <path d="M-26 262 v-42 a26 22 0 0 1 52 0 v42z" fill="#1D3A8A" stroke="#16213E" stroke-width="4"/>
+                <circle cx="0" cy="188" r="20" fill="#F5CBA7" stroke="#16213E" stroke-width="4"/>
+                <path d="M-20 184 a20 20 0 0 1 40 0 q-10 -8 -20 -4 q-10 -4 -20 4z" fill="#2B1B12" stroke="#16213E" stroke-width="3"/>
+                <circle cx="0" cy="164" r="8" fill="#2B1B12" stroke="#16213E" stroke-width="3"/>
+                <circle cx="-7" cy="190" r="2.5" fill="#16213E"/><circle cx="7" cy="190" r="2.5" fill="#16213E"/>
+                <ellipse cx="0" cy="200" rx="5" ry="6" fill="#C8342B" stroke="#16213E" stroke-width="2.5"/>
+                <path d="M-24 226 q-14 -14 -6 -30" fill="none" stroke="#16213E" stroke-width="7" stroke-linecap="round"/>
+              </g>
+              <!-- con đeo cặp -->
+              <g transform="translate(70 0)">
+                <rect x="6" y="236" width="18" height="24" rx="4" fill="#E9B233" stroke="#16213E" stroke-width="3"/>
+                <path d="M-16 270 v-28 a16 14 0 0 1 32 0 v28z" fill="#fff" stroke="#16213E" stroke-width="3.5"/>
+                <circle cx="0" cy="222" r="14" fill="#F5CBA7" stroke="#16213E" stroke-width="3.5"/>
+                <path d="M-14 219 a14 14 0 0 1 28 0 q-14 -6 -28 0z" fill="#2B1B12"/>
+                <circle cx="-5" cy="224" r="2" fill="#16213E"/><circle cx="5" cy="224" r="2" fill="#16213E"/>
+              </g>
+              <!-- bóng thoại -->
+              <rect x="10" y="10" width="112" height="30" fill="#FFD166" stroke="#16213E" stroke-width="3"/>
+              <text x="66" y="31" text-anchor="middle" font-size="18" fill="#16213E">6 giờ chiều...</text>
+              <path d="M134 52 h132 a12 12 0 0 1 12 12 v22 a12 12 0 0 1 -12 12 h-90 l-40 46 l18 -46 h-20 a12 12 0 0 1 -12 -12 v-22 a12 12 0 0 1 12 -12z" fill="#fff" stroke="#16213E" stroke-width="3.5" stroke-linejoin="round"/>
+              <text x="200" y="84" text-anchor="middle" font-size="26" font-weight="700" fill="#C8342B">Về ăn cơm!</text>
+            </svg>
+
+            <svg viewBox="0 0 300 300" role="img" aria-label="Khung 2: Cả nhà ngồi quanh mâm nhưng bố và con dán mắt vào điện thoại, mẹ hỏi chuyện ở trường, con đáp bình thường">
+              <defs><pattern id="tt-cham" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2" fill="#B9C9EA"/></pattern></defs>
+              <rect width="300" height="300" fill="#DCE6F7"/><rect width="300" height="300" fill="url(#tt-cham)"/>
+              <!-- bố -->
+              <g transform="translate(55 0)">
+                <path d="M-34 250 v-40 a34 26 0 0 1 68 0 v40z" fill="#4A5670" stroke="#16213E" stroke-width="4"/>
+                <circle cx="0" cy="168" r="24" fill="#BFD8F2" stroke="#16213E" stroke-width="4"/>
+                <path d="M-24 162 a24 24 0 0 1 48 0 q-24 -10 -48 0z" fill="#2B1B12" stroke="#16213E" stroke-width="3"/>
+                <circle cx="-8" cy="174" r="2.5" fill="#16213E"/><circle cx="8" cy="174" r="2.5" fill="#16213E"/>
+                <path d="M-6 186 h12" stroke="#16213E" stroke-width="3" stroke-linecap="round"/>
+                <rect x="-12" y="194" width="24" height="34" rx="4" fill="#16213E"/><rect x="-8" y="198" width="16" height="24" fill="#7FD3FF"/>
+              </g>
+              <!-- con -->
+              <g transform="translate(150 0)">
+                <path d="M-28 250 v-34 a28 22 0 0 1 56 0 v34z" fill="#fff" stroke="#16213E" stroke-width="4"/>
+                <circle cx="0" cy="180" r="21" fill="#BFD8F2" stroke="#16213E" stroke-width="4"/>
+                <path d="M-21 176 a21 21 0 0 1 42 0 q-21 -8 -42 0z" fill="#2B1B12" stroke="#16213E" stroke-width="3"/>
+                <circle cx="-7" cy="186" r="2.5" fill="#16213E"/><circle cx="7" cy="186" r="2.5" fill="#16213E"/>
+                <path d="M-5 196 h10" stroke="#16213E" stroke-width="3" stroke-linecap="round"/>
+                <rect x="-11" y="204" width="22" height="30" rx="4" fill="#16213E"/><rect x="-7" y="208" width="14" height="20" fill="#7FD3FF"/>
+              </g>
+              <!-- mẹ -->
+              <g transform="translate(245 0)">
+                <path d="M-32 250 v-38 a32 26 0 0 1 64 0 v38z" fill="#1D3A8A" stroke="#16213E" stroke-width="4"/>
+                <circle cx="0" cy="172" r="23" fill="#F5CBA7" stroke="#16213E" stroke-width="4"/>
+                <path d="M-23 167 a23 23 0 0 1 46 0 q-12 -9 -23 -5 q-11 -4 -23 5z" fill="#2B1B12" stroke="#16213E" stroke-width="3"/>
+                <circle cx="0" cy="144" r="9" fill="#2B1B12" stroke="#16213E" stroke-width="3"/>
+                <circle cx="-12" cy="176" r="2.5" fill="#16213E"/><circle cx="2" cy="176" r="2.5" fill="#16213E"/>
+                <path d="M-10 189 q5 -4 10 0" fill="none" stroke="#16213E" stroke-width="3" stroke-linecap="round"/>
+              </g>
+              <rect x="-4" y="234" width="308" height="70" fill="#A8703A" stroke="#16213E" stroke-width="4"/>
+              <ellipse cx="150" cy="250" rx="34" ry="10" fill="#fff" stroke="#1D3A8A" stroke-width="4"/>
+              <ellipse cx="85" cy="254" rx="18" ry="7" fill="#fff" stroke="#1D3A8A" stroke-width="3"/>
+              <ellipse cx="220" cy="254" rx="18" ry="7" fill="#8DB84A" stroke="#1D3A8A" stroke-width="3"/>
+              <!-- tiếng ting -->
+              <g transform="translate(-30 -30)"><polygon points="88,128 96,140 110,136 102,148 112,158 98,158 94,172 86,160 72,164 80,150 70,140 84,140" fill="#FFD166" stroke="#16213E" stroke-width="2.5"/>
+              <text x="91" y="155" text-anchor="middle" font-size="12" font-weight="700" fill="#16213E">TING</text></g>
+              <!-- bóng thoại -->
+              <rect x="10" y="10" width="112" height="30" fill="#FFD166" stroke="#16213E" stroke-width="3"/>
+              <text x="66" y="31" text-anchor="middle" font-size="18" fill="#16213E">Vài phút sau...</text>
+              <path d="M150 50 h130 a10 10 0 0 1 10 10 v40 a10 10 0 0 1 -10 10 h-30 l2 26 l-22 -26 h-80 a10 10 0 0 1 -10 -10 v-40 a10 10 0 0 1 10 -10z" fill="#fff" stroke="#16213E" stroke-width="3.5" stroke-linejoin="round"/>
+              <text x="215" y="76" text-anchor="middle" font-size="16" fill="#16213E">Hôm nay ở trường</text>
+              <text x="215" y="96" text-anchor="middle" font-size="16" fill="#16213E">thế nào con?</text>
+              <path d="M104 112 h92 a8 8 0 0 1 8 8 v18 a8 8 0 0 1 -8 8 h-40 l-8 12 l-2 -12 h-42 a8 8 0 0 1 -8 -8 v-18 a8 8 0 0 1 8 -8z" fill="#fff" stroke="#16213E" stroke-width="3" stroke-linejoin="round"/>
+              <text x="150" y="134" text-anchor="middle" font-size="14" fill="#4A5670">Dạ... bình thường</text>
+            </svg>
+
+            <svg viewBox="0 0 300 300" role="img" aria-label="Khung 3: Điện thoại được úp xuống bàn, cả nhà cười vui, con khen canh ngon">
+              <rect width="300" height="300" fill="#FFE8B0"/>
+              <g stroke="#FFD166" stroke-width="10"><path d="M150 200 L0 40 M150 200 L80 0 M150 200 L220 0 M150 200 L300 40 M150 200 L300 140 M150 200 L0 140"/></g>
+              <!-- bố -->
+              <g transform="translate(55 0)">
+                <path d="M-34 250 v-40 a34 26 0 0 1 68 0 v40z" fill="#4A5670" stroke="#16213E" stroke-width="4"/>
+                <circle cx="0" cy="168" r="24" fill="#F5CBA7" stroke="#16213E" stroke-width="4"/>
+                <path d="M-24 162 a24 24 0 0 1 48 0 q-24 -10 -48 0z" fill="#2B1B12" stroke="#16213E" stroke-width="3"/>
+                <path d="M-13 172 q5 -6 10 0 M3 172 q5 -6 10 0" fill="none" stroke="#16213E" stroke-width="3" stroke-linecap="round"/>
+                <path d="M-10 182 q10 12 20 0z" fill="#C8342B" stroke="#16213E" stroke-width="3" stroke-linejoin="round"/>
+              </g>
+              <!-- con -->
+              <g transform="translate(150 0)">
+                <path d="M-28 250 v-34 a28 22 0 0 1 56 0 v34z" fill="#fff" stroke="#16213E" stroke-width="4"/>
+                <circle cx="0" cy="180" r="21" fill="#F5CBA7" stroke="#16213E" stroke-width="4"/>
+                <path d="M-21 176 a21 21 0 0 1 42 0 q-21 -8 -42 0z" fill="#2B1B12" stroke="#16213E" stroke-width="3"/>
+                <path d="M-12 184 q5 -6 10 0 M2 184 q5 -6 10 0" fill="none" stroke="#16213E" stroke-width="3" stroke-linecap="round"/>
+                <path d="M-9 193 q9 11 18 0z" fill="#C8342B" stroke="#16213E" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M24 214 l14 -20" stroke="#A8703A" stroke-width="4" stroke-linecap="round"/><path d="M30 216 l14 -20" stroke="#A8703A" stroke-width="4" stroke-linecap="round"/>
+              </g>
+              <!-- mẹ -->
+              <g transform="translate(245 0)">
+                <path d="M-32 250 v-38 a32 26 0 0 1 64 0 v38z" fill="#1D3A8A" stroke="#16213E" stroke-width="4"/>
+                <circle cx="0" cy="172" r="23" fill="#F5CBA7" stroke="#16213E" stroke-width="4"/>
+                <path d="M-23 167 a23 23 0 0 1 46 0 q-12 -9 -23 -5 q-11 -4 -23 5z" fill="#2B1B12" stroke="#16213E" stroke-width="3"/>
+                <circle cx="0" cy="144" r="9" fill="#2B1B12" stroke="#16213E" stroke-width="3"/>
+                <path d="M-15 176 q5 -6 10 0 M1 176 q5 -6 10 0" fill="none" stroke="#16213E" stroke-width="3" stroke-linecap="round"/>
+                <path d="M-11 186 q10 11 20 0z" fill="#C8342B" stroke="#16213E" stroke-width="3" stroke-linejoin="round"/>
+              </g>
+              <rect x="-4" y="234" width="308" height="70" fill="#A8703A" stroke="#16213E" stroke-width="4"/>
+              <ellipse cx="150" cy="250" rx="34" ry="10" fill="#fff" stroke="#1D3A8A" stroke-width="4"/>
+              <path d="M136 236 q4 -10 0 -18 M150 236 q4 -10 0 -18 M164 236 q4 -10 0 -18" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+              <!-- điện thoại úp xuống -->
+              <rect x="30" y="268" width="38" height="12" rx="3" fill="#16213E"/>
+              <rect x="232" y="268" width="38" height="12" rx="3" fill="#16213E"/>
+              <path d="M286 120 c-6 -8 -16 -2 -10 6 l10 10 l10 -10 c6 -8 -4 -14 -10 -6z" fill="#C8342B"/>
+              <path d="M22 116 c-5 -7 -13 -2 -8 5 l8 8 l8 -8 c5 -7 -3 -12 -8 -5z" fill="#C8342B"/>
+              <!-- bóng thoại -->
+              <rect x="10" y="10" width="150" height="30" fill="#FFD166" stroke="#16213E" stroke-width="3"/>
+              <text x="85" y="31" text-anchor="middle" font-size="18" fill="#16213E">Úp điện thoại xuống!</text>
+              <path d="M80 56 h150 a12 12 0 0 1 12 12 v24 a12 12 0 0 1 -12 12 h-70 l-10 34 l-12 -34 h-58 a12 12 0 0 1 -12 -12 v-24 a12 12 0 0 1 12 -12z" fill="#fff" stroke="#16213E" stroke-width="3.5" stroke-linejoin="round"/>
+              <text x="155" y="87" text-anchor="middle" font-size="19" font-weight="700" fill="#16213E">Canh ngon quá mẹ ơi!</text>
+            </svg>
+          </div>
+          <figcaption>Truyện tranh: Cùng một mâm cơm, chỉ khác một chiếc điện thoại.</figcaption>
+        </figure>
         <details>
           <summary>Đọc toàn bài</summary>
           <h4>Trên mâm không chỉ có món ăn</h4>
