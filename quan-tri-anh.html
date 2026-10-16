@@ -47,9 +47,9 @@
 <main class="khung">
   <section class="buoc">
     <h2>Bước 1. Mở danh sách ảnh đang có (nếu có)</h2>
-    <p>Lần đầu thì bỏ qua bước này. Từ lần thứ hai, mở file <b>anh-thu-thach.js</b> đang dùng để thêm tiếp, không bị mất ảnh cũ.</p>
+    <p>Lần đầu thì bỏ qua bước này. Từ lần thứ hai, mở file <b>anh-thu-thach.json</b> (hoặc <b>anh-thu-thach.js</b> kiểu cũ) đang dùng để thêm tiếp, không bị mất ảnh cũ.</p>
     <div class="hang-nut">
-      <label class="nut">Mở file anh-thu-thach.js<input type="file" id="mo-file" accept=".js,text/javascript"></label>
+      <label class="nut">Mở file anh-thu-thach.json<input type="file" id="mo-file" accept=".json,.js,application/json,text/javascript"></label>
     </div>
     <p class="tt" id="tt-mo" aria-live="polite"></p>
   </section>
@@ -66,8 +66,8 @@
 
   <section class="buoc">
     <h2>Bước 3. Tải file về và đưa lên trang web</h2>
-    <p>Bấm nút dưới đây để tải file <b>anh-thu-thach.js</b>, rồi chép đè vào thư mục chứa <b>index.html</b> (trên máy và trên hosting). Mở lại trang web là ảnh hiện ra.</p>
-    <div class="hang-nut"><button class="nut lua" id="tai-ve" type="button">Tải file anh-thu-thach.js</button></div>
+    <p>Bấm nút dưới đây để tải file <b>anh-thu-thach.json</b>, rồi chép đè vào thư mục chứa <b>index.html</b> (trên máy và trên hosting). Mở lại trang web là ảnh hiện ra.</p>
+    <div class="hang-nut"><button class="nut lua" id="tai-ve" type="button">Tải file anh-thu-thach.json</button></div>
     <p class="tt" id="tt-tai" aria-live="polite"></p>
   </section>
 </main>
@@ -143,19 +143,18 @@ $("mo-file").addEventListener("change", async e => {
     ds = du.map(a => ({ anh: a.anh, ten: a.ten || "", lop: a.lop || "", camNhan: a.camNhan || "" }));
     bao($("tt-mo"), `Đã mở ${ds.length} ảnh từ file. Bạn có thể thêm tiếp ở Bước 2.`, "xong");
     ve();
-  } catch (err) { bao($("tt-mo"), "Không đọc được file. Hãy chọn đúng file anh-thu-thach.js do công cụ này tạo ra.", "loi"); }
+  } catch (err) { bao($("tt-mo"), "Không đọc được file. Hãy chọn đúng file anh-thu-thach.json (hoặc .js kiểu cũ) do công cụ này tạo ra.", "loi"); }
   e.target.value = "";
 });
 
 $("tai-ve").addEventListener("click", () => {
   const thieu = ds.filter(a => !a.ten.trim()).length;
   if (thieu && !confirm(`Có ${thieu} ảnh chưa điền tên. Vẫn tải file về?`)) return;
-  const noiDung = "// File ảnh thử thách \"Vào bếp cùng mẹ\". Tạo và cập nhật bằng công cụ quan-tri-anh.html, không cần sửa tay.\n"
-    + "window.ANH_THU_THACH = " + JSON.stringify(ds.map(a => ({ anh: a.anh, ten: a.ten.trim(), lop: a.lop.trim(), camNhan: a.camNhan.trim() })), null, 1).replace(/</g, "\\u003c") + ";\n";
-  const url = URL.createObjectURL(new Blob([noiDung], { type: "text/javascript" }));
-  const a = document.createElement("a"); a.href = url; a.download = "anh-thu-thach.js"; document.body.append(a); a.click(); a.remove();
+  const noiDung = JSON.stringify(ds.map(a => ({ anh: a.anh, ten: a.ten.trim(), lop: a.lop.trim(), camNhan: a.camNhan.trim() })), null, 1) + "\n";
+  const url = URL.createObjectURL(new Blob([noiDung], { type: "application/json" }));
+  const a = document.createElement("a"); a.href = url; a.download = "anh-thu-thach.json"; document.body.append(a); a.click(); a.remove();
   const mb = (noiDung.length / 1048576).toFixed(1);
-  bao($("tt-tai"), `Đã tạo file anh-thu-thach.js (${ds.length} ảnh, khoảng ${mb} MB). Chép đè file này vào cạnh index.html.`, "xong");
+  bao($("tt-tai"), `Đã tạo file anh-thu-thach.json (${ds.length} ảnh, khoảng ${mb} MB). Chép đè file này vào cạnh index.html.`, "xong");
 });
 
 window.addEventListener("beforeunload", e => { if (ds.length) { e.preventDefault(); e.returnValue = ""; } });

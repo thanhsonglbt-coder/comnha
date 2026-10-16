@@ -998,13 +998,22 @@ document.getElementById("nut-sau").onclick = () => moAnh(dangXem + 1);
 document.getElementById("nut-dong").onclick = () => hopXem.close();
 hopXem.addEventListener("click", e => { if (e.target === hopXem) hopXem.close(); });
 hopXem.addEventListener("keydown", e => { if (e.key === "ArrowLeft") moAnh(dangXem - 1); if (e.key === "ArrowRight") moAnh(dangXem + 1); });
-// Nạp file ảnh thêm bằng tay, luôn lấy bản mới nhất (tránh trình duyệt giữ bản cũ)
-(function () {
-  const sc = document.createElement("script");
-  sc.src = "anh-thu-thach.js?v=" + Date.now();
-  sc.onload = taiAnh;
-  sc.onerror = () => { console.warn("Không tìm thấy file anh-thu-thach.js cạnh index.html"); taiAnh(); };
-  document.head.append(sc);
+// Nạp ảnh thêm bằng tay từ anh-thu-thach.json, luôn lấy bản mới nhất (tránh trình duyệt giữ bản cũ).
+// Nếu chưa có file JSON thì dùng file anh-thu-thach.js kiểu cũ.
+(async function () {
+  try {
+    const r = await fetch("anh-thu-thach.json?v=" + Date.now());
+    if (!r.ok) throw new Error(r.status);
+    const du = await r.json();
+    if (Array.isArray(du)) window.ANH_THU_THACH = du;
+    taiAnh();
+  } catch (e) {
+    const sc = document.createElement("script");
+    sc.src = "anh-thu-thach.js?v=" + Date.now();
+    sc.onload = taiAnh;
+    sc.onerror = () => { console.warn("Không tìm thấy anh-thu-thach.json cạnh index.html"); taiAnh(); };
+    document.head.append(sc);
+  }
 })();
 
 // Lời hứa nhỏ (lưu trên máy người xem)
