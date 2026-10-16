@@ -163,6 +163,60 @@
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .kenh a.lien-ket{color:var(--lua)} }
   @media (max-width:760px){ .kenh{grid-template-columns:1fr} }
 
+  /* Thực đơn cả tuần */
+  .thuc-don{background:var(--lam-nhat);--c-dam:#1D3A8A;--c-beo:#E9B233;--c-bot:#A8703A}
+  :root[data-theme="dark"] .thuc-don{--c-dam:#7C9BE6}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .thuc-don{--c-dam:#7C9BE6} }
+  .td-dk{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;margin:0 0 28px}
+  .td-dk .nut{background:var(--men-lam);color:#fff;border:0}
+  .td-dk .nut:hover{background:#274BA8}
+  .td-dk .nut.phu{background:var(--the);color:var(--muc);border:2px solid var(--men-lam)}
+  .td-dk .o-nhap{width:auto}
+  .td-dk .o-nhap select,.td-dk .o-nhap input{width:auto;min-width:96px}
+  .o-nhap select{font:inherit;font-size:16px;padding:12px 14px;border-radius:12px;border:2px solid #C4CFE8;background:var(--su-trang);color:var(--muc)}
+  .luoi-ngay{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .ngay{background:var(--the);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;border:3px solid transparent}
+  .ngay.hom-nay{border-color:var(--lua)}
+  .ngay-dau{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .ngay h3{margin:0;font-size:20px;font-weight:800}
+  .ngay h3 small{font-weight:500;font-size:13px;color:var(--go);margin-left:6px}
+  .nut-doi{font:inherit;font-size:14px;font-weight:700;background:none;border:2px solid var(--lam-nhat);color:var(--muc);border-radius:999px;padding:4px 12px;cursor:pointer}
+  .nut-doi:hover{border-color:var(--men-lam)}
+  .mon label{display:block;font-size:13px;font-weight:700;color:var(--chu-phu);margin-bottom:2px}
+  .mon select{width:100%;font:inherit;font-size:15px;padding:8px 10px;border-radius:10px;border:2px solid #C4CFE8;background:var(--su-trang);color:var(--muc)}
+  .mon select:focus{border-color:var(--men-lam);outline:none}
+  .ngay-dd{margin-top:auto;padding-top:8px;border-top:1px dashed #C4CFE8;font-size:14px;color:var(--chu-phu)}
+  .ngay-dd b{color:var(--muc);font-size:17px}
+  .thanh{display:flex;height:10px;border-radius:999px;overflow:hidden;background:var(--lam-nhat);margin:6px 0 4px}
+  .thanh span:nth-child(1){background:var(--c-dam)}
+  .thanh span:nth-child(2){background:var(--c-beo)}
+  .thanh span:nth-child(3){background:var(--c-bot)}
+  .chu-giai{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px}
+  .chu-giai i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+  .td-tong{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+  .td-the{background:var(--the);border-radius:22px;padding:clamp(20px,4vw,30px)}
+  .td-the h3{margin:0 0 4px;font-size:24px;font-weight:800}
+  .td-the .phu{margin:0 0 18px;color:var(--chu-phu);font-size:15px}
+  .chat{display:grid;gap:10px;margin:0 0 20px}
+  .chat > div{display:grid;grid-template-columns:110px 1fr 54px;gap:10px;align-items:center;font-size:15px}
+  .chat .thanh{margin:0;height:12px;position:relative}
+  .chat .thanh span:first-child{background:currentColor}
+  .chat .thanh .vung{position:absolute;top:0;bottom:0;background:transparent;border-left:2px solid var(--muc);border-right:2px solid var(--muc);opacity:.45}
+  .kiem-tra{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+  .kiem-tra li{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start}
+  .kiem-tra li::before{content:"!";width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;background:var(--lua);color:#16213E}
+  .kiem-tra li.dat::before{content:"✓";background:#2E7D32;color:#fff}
+  .di-cho{columns:2 180px;column-gap:24px;margin:0;padding:0;list-style:none;font-size:15px}
+  .di-cho li{break-inside:avoid;display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--lam-nhat)}
+  .di-cho b{font-weight:700;white-space:nowrap}
+  .td-nguon{font-size:13px;color:var(--chu-phu);margin:20px 0 0;max-width:60em}
+  @media (max-width:760px){ .td-tong{grid-template-columns:1fr} .chat > div{grid-template-columns:90px 1fr 46px} }
+  @media print{
+    .in-td body > :not(main), .in-td main > :not(#thuc-don), .in-td .td-dk, .in-td .nut-doi{display:none!important}
+    .in-td .thuc-don{background:#fff;padding:0}
+    .in-td .ngay,.in-td .td-the{border:1px solid #C4CFE8;break-inside:avoid}
+  }
+
   /* Thử thách */
   .thu-thach-tren{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
   .luat{margin:0;padding-left:1.2em}
@@ -272,6 +326,7 @@
         <li><a href="#bai-viet">Bài viết</a></li>
         <li><a href="#infographic">Infographic</a></li>
         <li><a href="#hoat-dong">Kết nối</a></li>
+        <li><a href="#thuc-don">Thực đơn</a></li>
         <li><a href="#thu-thach">Thử thách</a></li>
         <li><a href="#khao-sat">Khảo sát</a></li>
         <li><a href="#nhom-thuc-hien">Nhóm thực hiện</a></li>
@@ -461,6 +516,36 @@
         <a class="lien-ket" href="#thu-thach">Xem cách tham gia</a>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ===== THỰC ĐƠN CẢ TUẦN ===== -->
+<section class="phan thuc-don" id="thuc-don">
+  <div class="khung">
+    <h2>Thực đơn cơm nhà cả tuần</h2>
+    <p class="mo-dau">Cùng bố mẹ lên mâm cơm tối cho 7 ngày: mỗi mâm một món chính, một món canh, một món rau. Trang tự tính dinh dưỡng và lập sẵn danh sách đi chợ. Thực đơn chỉ lưu trên máy của bạn.</p>
+    <div class="td-dk">
+      <button class="nut" type="button" id="td-goi-y">Gợi ý cả tuần</button>
+      <div class="o-nhap"><label for="td-nguoi">Số người ăn</label><input id="td-nguoi" type="number" min="1" max="12" value="4" inputmode="numeric"></div>
+      <div class="o-nhap"><label for="td-bat">Bát cơm mỗi người</label>
+        <select id="td-bat"><option value="1">1 bát</option><option value="1.5">1,5 bát</option><option value="2" selected>2 bát</option><option value="2.5">2,5 bát</option><option value="3">3 bát</option></select></div>
+      <button class="nut phu" type="button" id="td-in">In thực đơn</button>
+    </div>
+    <div class="luoi-ngay" id="luoi-ngay"></div>
+    <div class="td-tong">
+      <div class="td-the">
+        <h3>Dinh dưỡng cả tuần</h3>
+        <p class="phu" id="td-tb"></p>
+        <div class="chat" id="td-chat"></div>
+        <ul class="kiem-tra" id="td-kiem-tra"></ul>
+      </div>
+      <div class="td-the">
+        <h3>Danh sách đi chợ</h3>
+        <p class="phu" id="td-cho-phu"></p>
+        <ul class="di-cho" id="td-di-cho"></ul>
+      </div>
+    </div>
+    <p class="td-nguon">Số liệu dinh dưỡng là ước tính cho một suất ăn gia đình thông thường, chỉ để tham khảo. Tỉ lệ năng lượng nên có từ đạm 13–20%, chất béo 20–30%, bột đường 55–65% và mức năng lượng bữa tối khoảng 30–35% nhu cầu cả ngày của tuổi 16–18 dựa theo khuyến nghị của Viện Dinh dưỡng Quốc gia.</p>
   </div>
 </section>
 
@@ -810,6 +895,185 @@ const capNhatHua = () => {
 };
 hop.forEach(h => h.addEventListener("change", capNhatHua));
 capNhatHua();
+
+// ===== THỰC ĐƠN CẢ TUẦN =====
+(function () {
+  // Muốn thêm món: thêm một dòng vào đúng nhóm. Số liệu cho 1 người:
+  // [mã, tên món, kcal, đạm (g), béo (g), bột đường (g), nhóm đạm, nguyên liệu [tên, lượng, đơn vị]]
+  const MON = {
+    man: [
+      ["ca-kho", "Cá kho tộ", 190, 20, 10, 5, "cá", [["Cá lóc hoặc cá basa", 150, "g"]]],
+      ["ca-chien", "Cá nục chiên chấm mắm", 210, 22, 13, 1, "cá", [["Cá nục", 150, "g"]]],
+      ["thit-kho", "Thịt kho trứng", 330, 19, 25, 6, "thịt heo", [["Thịt ba chỉ", 80, "g"], ["Trứng vịt", 0.5, "quả"]]],
+      ["thit-luoc", "Thịt luộc chấm mắm tỏi", 230, 19, 17, 0, "thịt heo", [["Thịt nạc dăm", 100, "g"]]],
+      ["suon-ram", "Sườn ram mặn", 300, 18, 22, 8, "thịt heo", [["Sườn non", 120, "g"]]],
+      ["thit-rang", "Thịt rang cháy cạnh", 280, 17, 22, 3, "thịt heo", [["Thịt ba chỉ", 100, "g"]]],
+      ["ga-kho", "Gà kho gừng", 220, 22, 13, 3, "gà", [["Thịt gà", 130, "g"], ["Gừng", 5, "g"]]],
+      ["ga-luoc", "Gà luộc lá chanh", 200, 24, 11, 0, "gà", [["Thịt gà", 130, "g"]]],
+      ["bo-xao", "Bò xào hành tây", 210, 20, 12, 6, "bò", [["Thịt bò", 90, "g"], ["Hành tây", 50, "g"]]],
+      ["tom-rim", "Tôm rim mặn ngọt", 150, 20, 5, 6, "hải sản", [["Tôm", 120, "g"]]],
+      ["muc-xao", "Mực xào dứa", 170, 18, 6, 11, "hải sản", [["Mực", 120, "g"], ["Dứa", 60, "g"]]],
+      ["trung-chien", "Trứng chiên hành", 180, 12, 14, 1, "trứng", [["Trứng gà", 1.5, "quả"]]],
+      ["cha-trung", "Chả trứng hấp thịt", 220, 17, 15, 3, "trứng", [["Trứng gà", 1, "quả"], ["Thịt nạc xay", 50, "g"]]],
+      ["dau-sot", "Đậu phụ sốt cà chua", 160, 11, 10, 7, "đậu phụ", [["Đậu phụ", 150, "g"], ["Cà chua", 60, "g"]]],
+      ["dau-nhoi", "Đậu phụ nhồi thịt", 230, 16, 15, 6, "đậu phụ", [["Đậu phụ", 120, "g"], ["Thịt nạc xay", 50, "g"]]]
+    ],
+    canh: [
+      ["canh-chua", "Canh chua cá", 110, 12, 3, 8, "cá", [["Cá lóc", 60, "g"], ["Cà chua, dứa, giá", 100, "g"]]],
+      ["rau-ngot", "Canh rau ngót thịt băm", 80, 7, 4, 4, "", [["Rau ngót", 70, "g"], ["Thịt nạc xay", 25, "g"]]],
+      ["bi-do", "Canh bí đỏ thịt băm", 100, 6, 4, 11, "", [["Bí đỏ", 120, "g"], ["Thịt nạc xay", 25, "g"]]],
+      ["cai-tom", "Canh cải xanh nấu tôm", 70, 7, 2, 4, "", [["Cải xanh", 80, "g"], ["Tôm", 25, "g"]]],
+      ["mong-toi", "Canh mồng tơi mướp", 50, 2, 2, 6, "", [["Mồng tơi", 60, "g"], ["Mướp", 60, "g"]]],
+      ["kho-qua", "Canh khổ qua dồn thịt", 120, 9, 7, 5, "", [["Khổ qua", 100, "g"], ["Thịt nạc xay", 40, "g"]]],
+      ["ca-chua-trung", "Canh cà chua trứng", 90, 6, 5, 5, "", [["Cà chua", 80, "g"], ["Trứng gà", 0.5, "quả"]]],
+      ["bau-tom", "Canh bầu nấu tôm", 70, 6, 2, 6, "", [["Bầu", 120, "g"], ["Tôm", 25, "g"]]],
+      ["rau-den", "Canh rau dền", 45, 3, 1, 5, "", [["Rau dền", 80, "g"]]]
+    ],
+    rau: [
+      ["rau-muong", "Rau muống xào tỏi", 90, 3, 6, 6, "", [["Rau muống", 120, "g"]]],
+      ["su-su", "Su su luộc", 40, 1, 0, 8, "", [["Su su", 120, "g"]]],
+      ["cai-thia", "Cải thìa xào nấm", 70, 3, 4, 6, "", [["Cải thìa", 100, "g"], ["Nấm rơm", 40, "g"]]],
+      ["bap-cai", "Bắp cải luộc", 40, 2, 0, 8, "", [["Bắp cải", 120, "g"]]],
+      ["dau-que", "Đậu cô ve xào", 90, 3, 6, 7, "", [["Đậu cô ve", 100, "g"]]],
+      ["dua-leo", "Dưa leo, rau sống", 25, 1, 0, 5, "", [["Dưa leo", 80, "g"], ["Rau sống các loại", 40, "g"]]],
+      ["bong-cai", "Bông cải xanh xào", 80, 4, 5, 6, "", [["Bông cải xanh", 110, "g"]]],
+      ["muop-xao", "Mướp xào", 70, 2, 5, 5, "", [["Mướp", 120, "g"]]],
+      ["dau-bap", "Đậu bắp luộc", 40, 2, 0, 7, "", [["Đậu bắp", 100, "g"]]]
+    ]
+  };
+  const COM = { kcal: 200, p: 4, f: 0.5, c: 44, gao: 70 }; // 1 bát cơm trắng ≈ 70 g gạo
+  const LOAI = [["man", "Món chính"], ["canh", "Canh"], ["rau", "Rau"]];
+  const THU = ["Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy", "Chủ nhật"];
+  const MUC_TIEU = { kcalTu: 650, kcalDen: 900, dam: [13, 20], beo: [20, 30], bot: [55, 65] };
+
+  const theoMa = {};
+  LOAI.forEach(([l]) => MON[l].forEach(m => theoMa[m[0]] = { ma: m[0], ten: m[1], kcal: m[2], p: m[3], f: m[4], c: m[5], nhom: m[6], nl: m[7], loai: l }));
+
+  const KHOA_TD = "comnha-thuc-don";
+  let td = null;
+  try { td = JSON.parse(localStorage.getItem(KHOA_TD) || "null"); } catch (e) {}
+  const luuTD = () => { try { localStorage.setItem(KHOA_TD, JSON.stringify(td)); } catch (e) {} };
+
+  const tron = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const coCa = ngay => ["man", "canh"].some(l => theoMa[ngay[l]] && theoMa[ngay[l]].nhom === "cá");
+
+  // Gợi ý: không lặp món trong tuần, có cá ít nhất 2 bữa, nhiều nhóm đạm
+  function goiYTuan() {
+    for (let lan = 0; lan < 200; lan++) {
+      const ds = {}; LOAI.forEach(([l]) => ds[l] = tron(MON[l]).map(m => m[0]));
+      const tuan = THU.map((_, i) => ({ man: ds.man[i], canh: ds.canh[i], rau: ds.rau[i] }));
+      // tránh món chính và canh cùng là cá trong một mâm
+      if (tuan.some(n => theoMa[n.man].nhom === "cá" && theoMa[n.canh].nhom === "cá")) continue;
+      const nhomDam = new Set(tuan.map(n => theoMa[n.man].nhom));
+      if (tuan.filter(coCa).length >= 2 && nhomDam.size >= 5) return tuan;
+    }
+    return THU.map((_, i) => ({ man: MON.man[i][0], canh: MON.canh[i][0], rau: MON.rau[i][0] }));
+  }
+  function doiNgay(i) {
+    const ngay = td.tuan[i];
+    LOAI.forEach(([l]) => {
+      const dangDung = new Set(td.tuan.map(n => n[l]));
+      const conLai = MON[l].map(m => m[0]).filter(ma => !dangDung.has(ma));
+      const nguon = conLai.length ? conLai : MON[l].map(m => m[0]);
+      ngay[l] = nguon[Math.floor(Math.random() * nguon.length)];
+    });
+  }
+
+  if (!td || !Array.isArray(td.tuan) || td.tuan.length !== 7) td = { tuan: goiYTuan(), nguoi: 4, bat: 2 };
+
+  const oNguoi = document.getElementById("td-nguoi"), oBat = document.getElementById("td-bat");
+  oNguoi.value = td.nguoi; oBat.value = String(td.bat);
+  const luoiNgay = document.getElementById("luoi-ngay");
+
+  function tinhMam(ngay) {
+    const t = { kcal: COM.kcal * td.bat, p: COM.p * td.bat, f: COM.f * td.bat, c: COM.c * td.bat };
+    LOAI.forEach(([l]) => { const m = theoMa[ngay[l]]; if (m) { t.kcal += m.kcal; t.p += m.p; t.f += m.f; t.c += m.c; } });
+    const tong = t.p * 4 + t.f * 9 + t.c * 4 || 1;
+    t.pDam = Math.round(t.p * 400 / tong); t.pBeo = Math.round(t.f * 900 / tong); t.pBot = 100 - t.pDam - t.pBeo;
+    return t;
+  }
+  const thanh = t => `<div class="thanh" aria-hidden="true"><span style="width:${t.pDam}%"></span><span style="width:${t.pBeo}%"></span><span style="width:${t.pBot}%"></span></div>`;
+
+  function veLuoi() {
+    luoiNgay.innerHTML = "";
+    const homNay = (new Date().getDay() + 6) % 7;
+    td.tuan.forEach((ngay, i) => {
+      const the = document.createElement("article");
+      the.className = "ngay" + (i === homNay ? " hom-nay" : "");
+      the.innerHTML = `<div class="ngay-dau"><h3>${THU[i]}${i === homNay ? "<small>Hôm nay</small>" : ""}</h3>
+        <button type="button" class="nut-doi" aria-label="Đổi món ${THU[i]}">Đổi món</button></div>` +
+        LOAI.map(([l, nhan]) => `<div class="mon"><label for="td-${i}-${l}">${nhan}</label><select id="td-${i}-${l}" data-loai="${l}">
+          <option value="">Chưa chọn</option>${MON[l].map(m => `<option value="${m[0]}"${m[0] === ngay[l] ? " selected" : ""}>${m[1]}</option>`).join("")}</select></div>`).join("") +
+        `<div class="ngay-dd"></div>`;
+      the.querySelectorAll("select").forEach(s => s.addEventListener("change", () => { ngay[s.dataset.loai] = s.value; capNhat(); }));
+      the.querySelector(".nut-doi").addEventListener("click", () => { doiNgay(i); veLuoi(); capNhat(); });
+      luoiNgay.append(the);
+    });
+  }
+
+  const dinhDang = (so, dv) => {
+    if (dv === "g") return so >= 1000 ? (Math.round(so / 100) / 10).toString().replace(".", ",") + " kg" : Math.round(so / 10) * 10 + " g";
+    return Math.ceil(so) + " " + dv;
+  };
+
+  function capNhat() {
+    luuTD();
+    // từng ngày
+    [...luoiNgay.children].forEach((the, i) => {
+      const t = tinhMam(td.tuan[i]);
+      the.querySelector(".ngay-dd").innerHTML = `<b>≈ ${Math.round(t.kcal)} kcal</b> mỗi người` + thanh(t) +
+        `<div class="chu-giai"><span><i style="background:var(--c-dam)"></i>Đạm ${t.pDam}%</span><span><i style="background:var(--c-beo)"></i>Béo ${t.pBeo}%</span><span><i style="background:var(--c-bot)"></i>Bột đường ${t.pBot}%</span></div>`;
+    });
+    // cả tuần
+    const ds = td.tuan.map(tinhMam);
+    const tb = k => ds.reduce((s, t) => s + t[k], 0) / ds.length;
+    const kcalTB = Math.round(tb("kcal")), dam = Math.round(tb("pDam")), beo = Math.round(tb("pBeo")), bot = 100 - dam - beo;
+    document.getElementById("td-tb").textContent = `Trung bình mỗi bữa tối: khoảng ${kcalTB} kcal cho một người (${String(td.bat).replace(".", ",")} bát cơm). Hai vạch dọc trên mỗi thanh là khoảng nên có.`;
+    const dongChat = (ten, gt, [tu, den], mau) => `<div><span>${ten}</span><div class="thanh" style="color:${mau}"><span style="width:${gt}%"></span><span class="vung" style="left:${tu}%;width:${den - tu}%"></span></div><b>${gt}%</b></div>`;
+    document.getElementById("td-chat").innerHTML =
+      dongChat("Đạm", dam, MUC_TIEU.dam, "var(--c-dam)") + dongChat("Chất béo", beo, MUC_TIEU.beo, "var(--c-beo)") + dongChat("Bột đường", bot, MUC_TIEU.bot, "var(--c-bot)");
+
+    const daChon = l => td.tuan.map(n => theoMa[n[l]]).filter(Boolean);
+    const soCa = td.tuan.filter(coCa).length;
+    const nhomDam = new Set(daChon("man").map(m => m.nhom));
+    const soRau = new Set(daChon("rau").map(m => m.ma)).size;
+    const demMan = {}; daChon("man").forEach(m => demMan[m.ma] = (demMan[m.ma] || 0) + 1);
+    const lap = Object.keys(demMan).filter(k => demMan[k] > 2).map(k => theoMa[k].ten);
+    const thieu = td.tuan.map((n, i) => LOAI.some(([l]) => !n[l]) ? THU[i] : "").filter(Boolean);
+    const trongMuc = (g, [tu, den]) => g >= tu && g <= den;
+    const kiem = [
+      [soCa >= 2, `Có cá ${soCa} bữa trong tuần` + (soCa >= 2 ? "" : ", nên ăn cá ít nhất 2 bữa")],
+      [nhomDam.size >= 4, `Món chính có ${nhomDam.size} nhóm đạm (${[...nhomDam].join(", ") || "chưa có"})` + (nhomDam.size >= 4 ? "" : ", nên đổi xen thịt, cá, trứng, đậu phụ")],
+      [soRau >= 5, `Có ${soRau} loại rau khác nhau` + (soRau >= 5 ? "" : ", nên thay đổi rau nhiều hơn")],
+      [!lap.length, lap.length ? `Món ${lap.join(", ")} lặp lại hơn 2 lần` : "Không món chính nào lặp lại quá 2 lần"],
+      [!thieu.length, thieu.length ? `Còn thiếu món ở: ${thieu.join(", ")}` : "Mâm nào cũng đủ món chính, canh và rau"],
+      [trongMuc(dam, MUC_TIEU.dam) && trongMuc(beo, MUC_TIEU.beo), trongMuc(beo, MUC_TIEU.beo) ? (trongMuc(dam, MUC_TIEU.dam) ? "Tỉ lệ đạm và chất béo cân đối" : "Tỉ lệ đạm chưa nằm trong mức nên có") : beo > MUC_TIEU.beo[1] ? "Hơi nhiều chất béo, nên thay bớt món chiên, rang bằng món luộc, hấp" : "Hơi ít chất béo, có thể thêm một món xào"]
+    ];
+    document.getElementById("td-kiem-tra").innerHTML = kiem.map(([dat, chu]) => `<li class="${dat ? "dat" : ""}">${chu}</li>`).join("");
+
+    // đi chợ
+    const cho = {};
+    const them = (ten, so, dv) => { const k = ten + "|" + dv; cho[k] = (cho[k] || 0) + so * td.nguoi; };
+    td.tuan.forEach(n => {
+      them("Gạo", COM.gao * td.bat, "g");
+      LOAI.forEach(([l]) => { const m = theoMa[n[l]]; if (m) m.nl.forEach(([ten, so, dv]) => them(ten, so, dv)); });
+    });
+    document.getElementById("td-cho-phu").textContent = `Cho ${td.nguoi} người, 7 bữa tối. Chưa tính gia vị như mắm, muối, dầu ăn, hành, tỏi.`;
+    document.getElementById("td-di-cho").innerHTML = Object.keys(cho).sort((a, b) => a.localeCompare(b, "vi"))
+      .map(k => { const [ten, dv] = k.split("|"); return `<li><span>${ten}</span><b>${dinhDang(cho[k], dv)}</b></li>`; }).join("");
+  }
+
+  document.getElementById("td-goi-y").addEventListener("click", () => { td.tuan = goiYTuan(); veLuoi(); capNhat(); });
+  oNguoi.addEventListener("input", () => { const n = parseInt(oNguoi.value, 10); if (n >= 1 && n <= 12) { td.nguoi = n; capNhat(); } });
+  oBat.addEventListener("change", () => { td.bat = parseFloat(oBat.value); capNhat(); });
+  document.getElementById("td-in").addEventListener("click", () => {
+    document.documentElement.classList.add("in-td");
+    window.print();
+  });
+  window.addEventListener("afterprint", () => document.documentElement.classList.remove("in-td"));
+
+  veLuoi(); capNhat();
+})();
 </script>
 </body>
 </html>
