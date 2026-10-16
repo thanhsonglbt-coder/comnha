@@ -305,6 +305,30 @@
   .dieu-khien button{font:inherit;font-weight:700;background:rgba(255,255,255,.14);color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:999px;padding:10px 20px;cursor:pointer}
   .dieu-khien button:hover{background:rgba(255,255,255,.25)}
 
+  /* Trò chơi: Cất điện thoại khỏi mâm */
+  .tro-choi{background:var(--men-lam);color:#fff}
+  .tro-choi .khung{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
+  .tro-choi .mo-dau{color:rgba(255,255,255,.85)}
+  .tro-choi .luat{margin:0 0 24px}
+  .tro-choi kbd{font:inherit;font-weight:700;background:rgba(255,255,255,.15);border-radius:6px;padding:0 6px}
+  .bang-diem{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 20px}
+  .bang-diem div{border-top:3px solid var(--lua);padding-top:8px}
+  .bang-diem b{display:block;font-size:36px;line-height:1;font-weight:900;color:var(--lua)}
+  .bang-diem span{font-size:14px;opacity:.85}
+  .tro-choi .nut-chinh{border:0}
+  .ket-qua-choi{font-size:24px;min-height:1.5em;margin:16px 0 0;color:var(--lua)}
+  .ban-choi{background:radial-gradient(circle,#B98049 0 62%,#A8703A 63%);border-radius:50%;aspect-ratio:1;max-width:460px;width:100%;margin:0 auto;padding:12%;display:grid;grid-template-columns:repeat(3,1fr);gap:4%;position:relative;touch-action:manipulation}
+  .o-choi{position:relative;aspect-ratio:1;border-radius:50%;background:#fff;border:5px solid #1D3A8A;box-shadow:inset 0 0 0 6px #DCE6F7;cursor:pointer;padding:0;font:inherit;overflow:hidden;-webkit-tap-highlight-color:transparent}
+  .o-choi span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(28px,7vw,48px);line-height:1;transform:scale(0);transition:transform .15s ease-out;pointer-events:none}
+  .o-choi.hien span{transform:scale(1)}
+  .o-choi.trung{background:#C9EBC9}
+  .o-choi.sai{background:#F6C9C5;animation:lac .3s}
+  .o-choi .cong{position:absolute;inset:auto 0 6%;font-size:15px;font-weight:900;color:#16213E;transform:none;justify-content:center}
+  @keyframes lac{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  .ban-choi .phu-ban{position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(16,23,43,.55);font-size:22px;text-align:center;padding:20%;pointer-events:none;transition:opacity .2s}
+  .ban-choi.dang-choi .phu-ban{opacity:0}
+  @media (max-width:760px){ .tro-choi .khung{grid-template-columns:1fr;gap:28px} }
+
   /* Lời hứa nhỏ */
   .loi-hua{background:var(--lam-nhat)}
   .danh-sach-hua{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:12px;max-width:620px}
@@ -350,6 +374,7 @@
         <li><a href="#hoat-dong">Kết nối</a></li>
         <li><a href="#thuc-don">Thực đơn</a></li>
         <li><a href="#thu-thach">Thử thách</a></li>
+        <li><a href="#tro-choi">Trò chơi</a></li>
         <li><a href="#khao-sat">Khảo sát</a></li>
         <li><a href="#nhom-thuc-hien">Nhóm thực hiện</a></li>
       </ul>
@@ -688,6 +713,31 @@
   </div>
 </dialog>
 
+<!-- ===== TRÒ CHƠI ===== -->
+<section class="phan tro-choi" id="tro-choi">
+  <div class="khung">
+    <div>
+      <h2>Trò chơi: Cất điện thoại khỏi mâm</h2>
+      <p class="mo-dau" style="margin-bottom:20px">Điện thoại cứ thi nhau “mọc” lên giữa mâm cơm. Bạn có 30 giây để cất hết chúng đi, nhưng nhớ đừng làm đổ bát cơm của cả nhà!</p>
+      <ul class="luat">
+        <li>Chạm vào 📱 để cất điện thoại: <b>+1 điểm</b>, cất liên tiếp được thưởng thêm.</li>
+        <li>Chạm nhầm 🍚 bát cơm hay 🍲 nồi canh: <b>trừ 2 điểm</b>.</li>
+        <li>Trên máy tính có thể bấm phím số <kbd>1</kbd>–<kbd>9</kbd> theo vị trí các ô.</li>
+      </ul>
+      <div class="bang-diem" aria-live="polite">
+        <div><b id="tc-diem">0</b><span>Điểm</span></div>
+        <div><b id="tc-gio">30</b><span>Giây còn lại</span></div>
+        <div><b id="tc-ky-luc">0</b><span>Kỷ lục của bạn</span></div>
+      </div>
+      <button class="nut nut-chinh" type="button" id="tc-bat-dau">Bắt đầu chơi</button>
+      <p class="ket-qua-choi tay" id="tc-ket-qua" aria-live="polite"></p>
+    </div>
+    <div class="ban-choi" id="ban-choi" aria-label="Mâm cơm có 9 chỗ">
+      <p class="phu-ban tay" id="tc-phu">Bấm “Bắt đầu chơi” nhé!</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== LỜI HỨA ===== -->
 <section class="phan loi-hua" id="loi-hua">
   <div class="khung">
@@ -970,6 +1020,95 @@ const capNhatHua = () => {
 };
 hop.forEach(h => h.addEventListener("change", capNhatHua));
 capNhatHua();
+
+// ===== TRÒ CHƠI: CẤT ĐIỆN THOẠI KHỎI MÂM =====
+(function () {
+  const THOI_GIAN = 30;
+  const ban = document.getElementById("ban-choi"), phu = document.getElementById("tc-phu");
+  const oDiem = document.getElementById("tc-diem"), oGio = document.getElementById("tc-gio"), oKyLuc = document.getElementById("tc-ky-luc");
+  const nut = document.getElementById("tc-bat-dau"), ketQua = document.getElementById("tc-ket-qua");
+  const KHOA_KL = "comnha-ky-luc-tro-choi";
+  let kyLuc = 0;
+  try { kyLuc = parseInt(localStorage.getItem(KHOA_KL) || "0", 10) || 0; } catch (e) {}
+  oKyLuc.textContent = kyLuc;
+
+  const o = [];
+  for (let i = 0; i < 9; i++) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "o-choi"; b.setAttribute("aria-label", "Chỗ " + (i + 1) + ": trống");
+    b.innerHTML = "<span></span>";
+    b.addEventListener("pointerdown", e => { e.preventDefault(); cham(i); });
+    b.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); cham(i); } });
+    ban.insertBefore(b, phu); o.push({ nut: b, loai: "", hen: 0 });
+  }
+
+  let dangChoi = false, diem = 0, chuoi = 0, conLai = THOI_GIAN, batDau = 0, henSinh = 0, henDem = 0;
+
+  function datO(i, loai) {
+    const c = o[i];
+    clearTimeout(c.hen);
+    c.loai = loai;
+    c.nut.querySelector("span").textContent = loai === "dt" ? "📱" : loai === "com" ? "🍚" : loai === "canh" ? "🍲" : "";
+    c.nut.classList.toggle("hien", !!loai);
+    c.nut.setAttribute("aria-label", "Chỗ " + (i + 1) + ": " + (loai === "dt" ? "điện thoại" : loai ? "món ăn" : "trống"));
+  }
+  function nhay(i, lop, chu) {
+    const b = o[i].nut;
+    b.classList.remove("trung", "sai"); void b.offsetWidth; b.classList.add(lop);
+    const s = document.createElement("span"); s.className = "cong"; s.textContent = chu; b.append(s);
+    setTimeout(() => { b.classList.remove(lop); s.remove(); }, 350);
+  }
+  function cham(i) {
+    if (!dangChoi) return;
+    const c = o[i];
+    if (c.loai === "dt") {
+      chuoi++;
+      const cong = 1 + (chuoi >= 5 ? 1 : 0);
+      diem += cong; nhay(i, "trung", "+" + cong); datO(i, "");
+    } else if (c.loai) {
+      chuoi = 0; diem = Math.max(0, diem - 2); nhay(i, "sai", "−2"); datO(i, "");
+    }
+    oDiem.textContent = diem;
+  }
+  function sinh() {
+    if (!dangChoi) return;
+    const daQua = (Date.now() - batDau) / 1000 / THOI_GIAN; // 0 → 1, càng về cuối càng nhanh
+    const trong = o.map((c, i) => c.loai ? -1 : i).filter(i => i >= 0);
+    if (trong.length) {
+      const i = trong[Math.floor(Math.random() * trong.length)];
+      const r = Math.random();
+      const loai = r < 0.72 ? "dt" : r < 0.86 ? "com" : "canh";
+      datO(i, loai);
+      o[i].hen = setTimeout(() => { if (o[i].loai === "dt") chuoi = 0; datO(i, ""); }, 1400 - 650 * daQua);
+    }
+    henSinh = setTimeout(sinh, 700 - 350 * daQua);
+  }
+  function ketThuc() {
+    dangChoi = false; clearTimeout(henSinh); clearInterval(henDem);
+    o.forEach((_, i) => datO(i, ""));
+    ban.classList.remove("dang-choi");
+    let loi = diem >= 30 ? "Siêu đỉnh! Không chiếc điện thoại nào thoát được. Cả nhà có một bữa cơm trọn vẹn."
+      : diem >= 20 ? "Rất khá! Mâm cơm nhà bạn đã rộn tiếng nói cười hơn rồi."
+      : diem >= 10 ? "Cũng được đấy! Tối nay thử úp điện thoại thật xem sao."
+      : "Điện thoại vẫn đang thắng thế. Chơi lại một ván nhé!";
+    if (diem > kyLuc) { kyLuc = diem; oKyLuc.textContent = kyLuc; loi = "Kỷ lục mới: " + diem + " điểm! " + loi; try { localStorage.setItem(KHOA_KL, kyLuc); } catch (e) {} }
+    ketQua.textContent = loi;
+    phu.textContent = diem + " điểm";
+    nut.textContent = "Chơi lại"; nut.disabled = false;
+  }
+  nut.addEventListener("click", () => {
+    diem = 0; chuoi = 0; conLai = THOI_GIAN; batDau = Date.now();
+    oDiem.textContent = 0; oGio.textContent = conLai; ketQua.textContent = "";
+    dangChoi = true; nut.disabled = true; nut.textContent = "Đang chơi..."; ban.classList.add("dang-choi");
+    sinh();
+    henDem = setInterval(() => { conLai--; oGio.textContent = conLai; if (conLai <= 0) ketThuc(); }, 1000);
+  });
+  // phím số 1–9 khi đang chơi
+  document.addEventListener("keydown", e => {
+    if (!dangChoi || !/^[1-9]$/.test(e.key) || /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return;
+    cham(parseInt(e.key, 10) - 1);
+  });
+})();
 
 // ===== THỰC ĐƠN CẢ TUẦN =====
 (function () {
