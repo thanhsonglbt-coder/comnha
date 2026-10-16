@@ -133,6 +133,28 @@
   .bai details[open] summary{display:none}
   .bai .nguon{font-size:14px;color:var(--chu-phu);border-top:1px solid var(--lam-nhat);padding-top:14px;margin-top:24px}
 
+  /* Bài viết chuyên gia (nổi bật) */
+  article.bai.chuyen-gia{max-width:none;display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:clamp(24px,4vw,48px);align-items:start;border:3px solid var(--lua);position:relative}
+  .chuyen-gia .nhan-cg{position:absolute;top:-16px;left:28px;background:var(--lua);color:#16213E;font-weight:800;font-size:14px;padding:5px 16px;border-radius:999px}
+  .chuyen-gia figure{margin:0;position:sticky;top:84px}
+  .chuyen-gia figure img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 14px 30px rgba(22,33,62,.18)}
+  .chuyen-gia figcaption{margin-top:12px;font-size:15px;line-height:1.45;color:var(--chu-phu)}
+  .chuyen-gia figcaption b{display:block;color:var(--muc);font-size:17px}
+  .chuyen-gia .noi-bat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:4px 0 22px}
+  .chuyen-gia .noi-bat div{background:var(--lam-nhat);border-radius:14px;padding:14px}
+  .chuyen-gia .noi-bat b{display:block;font-size:30px;line-height:1;font-weight:900;color:var(--men-lam);margin-bottom:6px}
+  :root[data-theme="dark"] .chuyen-gia .noi-bat b{color:var(--lua)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .chuyen-gia .noi-bat b{color:var(--lua)} }
+  .chuyen-gia .noi-bat span{font-size:14px;line-height:1.45;display:block;color:var(--chu-phu)}
+  .chuyen-gia sup{font-size:12px;color:var(--go);font-weight:700}
+  .chuyen-gia .tltk{font-size:14px;line-height:1.55;color:var(--chu-phu);padding-left:1.6em;margin:8px 0 0}
+  .chuyen-gia .tltk li{margin-bottom:6px}
+  @media (max-width:760px){
+    article.bai.chuyen-gia{grid-template-columns:1fr}
+    .chuyen-gia figure{position:static;max-width:300px}
+    .chuyen-gia .noi-bat{grid-template-columns:1fr}
+  }
+
   /* Infographic */
   .info{background:var(--men-lam);color:#fff;border-radius:28px;padding:clamp(24px,5vw,56px);max-width:900px;margin:0 auto;position:relative;overflow:hidden}
   .info::after{content:"";position:absolute;right:-120px;top:-120px;width:320px;height:320px;border-radius:50%;border:28px solid rgba(233,178,51,.18)}
@@ -431,6 +453,59 @@
     <h2>Bài viết</h2>
     <p class="mo-dau">Những câu chuyện nhỏ quanh mâm cơm nhà. Bạn có bài muốn chia sẻ? Gửi cho Fanpage của nhóm nhé.</p>
     <div class="danh-sach-bai">
+
+      <!-- Bài viết chuyên gia, đặt nổi bật trên cùng -->
+      <article class="bai chuyen-gia" id="bai-chuyen-gia">
+        <span class="nhan-cg">Góc chuyên gia</span>
+        <figure>
+          <img src="anh/bs-nhat-tin.jpg" alt="Bác sĩ nội trú Trần Nguyễn Nhất Tín mặc áo blouse trắng" loading="lazy" width="800" height="1103">
+          <figcaption><b>BSNT. Trần Nguyễn Nhất Tín</b>Thủ khoa Bác sĩ nội trú, Trường Đại học Y khoa Phạm Ngọc Thạch năm 2025</figcaption>
+        </figure>
+        <div>
+          <p class="chuyen-muc">Góc chuyên gia · Y học</p>
+          <h3>Cất điện thoại khi ăn: chuyện của dạ dày và của trái tim</h3>
+          <p class="tac-gia">BSNT. Trần Nguyễn Nhất Tín</p>
+          <p class="sa-pa">Vừa ăn vừa lướt điện thoại khiến ta ăn nhiều hơn mà vẫn thấy chưa no, còn một bữa cơm cả nhà trò chuyện, nhìn nhau và cùng cười lại giúp cơ thể làm dịu căng thẳng. Bác sĩ Nhất Tín giải thích hai điều này dưới góc nhìn y học.</p>
+          <div class="noi-bat">
+            <div><b>~15%</b><span>năng lượng nạp thêm khi vừa ăn vừa dùng smartphone<sup>[5]</sup></span></div>
+            <div><b>3+</b><span>bữa cơm gia đình mỗi tuần gắn với ít thừa cân và rối loạn ăn uống hơn<sup>[14]</sup></span></div>
+            <div><b>35%</b><span>thấp hơn về tỉ lệ rối loạn ăn uống ở trẻ ăn cùng gia đình thường xuyên<sup>[14]</sup></span></div>
+          </div>
+          <details>
+            <summary>Đọc toàn bài</summary>
+            <h4>1. Tác động sinh lý của việc sử dụng thiết bị điện tử trong bữa ăn</h4>
+            <p>Quá trình tiêu hóa không bắt đầu khi thức ăn chạm vào dạ dày mà bắt đầu từ não bộ. Khi con người nhìn, ngửi, nếm và chú ý đến món ăn, các tín hiệu cảm giác được truyền về não, sau đó theo dây thần kinh phế vị (dây X) đi xuống ống tiêu hóa. Các tín hiệu này kích thích tiết nước bọt, dịch vị, men tụy và insulin, giúp cơ thể chuẩn bị đón nhận thức ăn. Giai đoạn này được gọi là pha đầu (cephalic phase) của tiêu hóa<sup>[1]</sup>.</p>
+            <p>Pha đầu chịu sự chi phối chủ yếu của hệ thần kinh phó giao cảm, tức hệ “nghỉ ngơi – tiêu hóa”, hoạt động mạnh nhất khi cơ thể thư giãn. Ngược lại, khi não bộ ở trạng thái hưng phấn hoặc căng thẳng, hệ thần kinh giao cảm chiếm ưu thế: máu được ưu tiên dồn về cơ và não, nhu động dạ dày chậm lại và sự bài tiết dịch tiêu hóa giảm đi. Các video ngắn cường độ cao, với nhịp hình ảnh nhanh và nội dung kích thích liên tục, có thể kéo sự chú ý khỏi món ăn và đẩy não bộ vào trạng thái hưng phấn. Vì vậy, có cơ sở sinh lý để cho rằng việc vừa ăn vừa dùng điện thoại làm suy giảm khả năng “chuẩn bị” của hệ tiêu hóa. Tuy nhiên, cần lưu ý rằng tác động trực tiếp lên lưu lượng máu dạ dày và lượng men tiêu hóa ở học sinh hiện vẫn là suy luận từ sinh lý học, chưa được đo lường trực tiếp trong các nghiên cứu.</p>
+            <p>Cơ chế có bằng chứng khoa học vững chắc nhất là hiện tượng ăn mất tập trung. Khi sự chú ý bị phân tán, não bộ ghi nhận kém về bữa ăn vừa diễn ra: người ăn cảm thấy ít no hơn và có xu hướng ăn nhiều hơn ở bữa sau. Một thử nghiệm cho thấy những người vừa ăn trưa vừa chơi trò chơi điện tử nhớ kém hơn về bữa ăn, cảm thấy kém no hơn và ăn nhiều bánh hơn sau đó khoảng nửa giờ<sup>[2]</sup>. Phân tích tổng hợp của Robinson và cộng sự khẳng định rằng ăn mất tập trung làm tăng lượng thức ăn tiêu thụ về sau<sup>[3]</sup>. Kết luận này tiếp tục được củng cố bởi một phân tích tổng hợp mới công bố năm 2026 trên hơn 40 nghiên cứu, trong đó các tác nhân gây xao nhãng thụ động như xem màn hình còn làm tăng lượng ăn ngay trong bữa<sup>[4]</sup>. Riêng với điện thoại thông minh, một thí nghiệm ghi nhận người ăn trong lúc sử dụng smartphone nạp nhiều hơn khoảng 15% năng lượng so với khi ăn tập trung<sup>[5]</sup>.</p>
+            <p>Bên cạnh đó, người vừa ăn vừa xem thường ăn nhanh, nhai ít và nuốt nhiều không khí, tạo điều kiện cho các triệu chứng đầy bụng, ợ hơi và khó tiêu. Thông qua trục não – ruột, tình trạng căng thẳng và thói quen ăn uống vội vàng còn liên quan đến các rối loạn tiêu hóa chức năng như khó tiêu và đau thượng vị không do tổn thương thực thể<sup>[6]</sup>. Về lâu dài, việc sử dụng màn hình nhiều ở trẻ em và thanh thiếu niên có liên quan đến thừa cân, béo phì. Mối liên quan này được giải thích bởi sự phối hợp của nhiều yếu tố: ăn mất tập trung, ít vận động, ngủ muộn và tiếp xúc với quảng cáo thực phẩm<sup>[7]</sup>. Cần phân biệt rằng thói quen này góp phần gây khó tiêu chức năng chứ không phải nguyên nhân của viêm loét dạ dày. Các nguyên nhân chính của viêm loét dạ dày vẫn là vi khuẩn <i>Helicobacter pylori</i> và thuốc kháng viêm không steroid.</p>
+            <h4>2. Bữa cơm gia đình và cơ chế giải phóng các hormone gắn kết – an vui</h4>
+            <p>Áp lực học tập kéo dài kích hoạt trục hạ đồi – tuyến yên – tuyến thượng thận, làm tăng tiết cortisol, thường được gọi là hormone căng thẳng. Trong ngắn hạn, cortisol giúp cơ thể tỉnh táo để đối phó với thử thách. Tuy nhiên, khi duy trì ở mức cao trong thời gian dài, cortisol liên quan đến mệt mỏi, rối loạn giấc ngủ, giảm khả năng tập trung, thèm ăn đồ ngọt và béo, cũng như tăng nguy cơ lo âu.</p>
+            <p>Ngược lại, các tương tác xã hội tích cực như giao tiếp bằng mắt, nghe giọng nói thân quen hay tiếp xúc cơ thể kích thích não bộ tiết oxytocin, một hormone có vai trò gắn kết và làm dịu phản ứng stress. Thực nghiệm cho thấy người nhận được sự hỗ trợ xã hội trước một tình huống căng thẳng có mức cortisol thấp hơn, và thấp nhất khi sự hỗ trợ đó kết hợp với oxytocin<sup>[8]</sup>. Một nghiên cứu đặc biệt có ý nghĩa ghi nhận: các bé gái sau khi trải qua một bài kiểm tra gây căng thẳng được mẹ an ủi trực tiếp hoặc qua giọng nói điện thoại đều có oxytocin tăng và cortisol giảm<sup>[9]</sup>. Trong khi đó, những em chỉ nhận được tin nhắn văn bản từ mẹ không có sự gia tăng oxytocin, và cortisol vẫn cao tương đương nhóm không được an ủi<sup>[10]</sup>. Kết quả này cho thấy giao tiếp trực tiếp tạo ra đáp ứng nội tiết khác biệt rõ rệt so với tương tác qua màn hình.</p>
+            <p>Bữa cơm gia đình còn là dịp để trò chuyện và cùng cười. Nghiên cứu chụp cắt lớp phát xạ positron (PET) cho thấy tiếng cười trong môi trường xã hội kích thích não bộ giải phóng endorphin, chất giảm đau nội sinh có tác dụng tạo cảm giác dễ chịu và củng cố sự gắn bó<sup>[11]</sup>. Ở cấp độ cộng đồng, những người thường xuyên ăn cùng người khác cho biết họ hạnh phúc hơn, hài lòng với cuộc sống hơn và gắn kết xã hội tốt hơn<sup>[12]</sup>. Ở trẻ em và thanh thiếu niên, ăn cơm cùng gia đình thường xuyên có liên quan đến ít triệu chứng trầm cảm hơn, lòng tự trọng cao hơn, ít sử dụng chất gây nghiện và ít rối loạn ăn uống hơn<sup>[13]</sup>. Những trẻ ăn cùng gia đình từ ba bữa mỗi tuần trở lên có tỷ lệ thừa cân thấp hơn khoảng 12%, ăn uống không lành mạnh thấp hơn khoảng 20% và rối loạn ăn uống thấp hơn khoảng 35%<sup>[14]</sup>.</p>
+            <blockquote class="tay">Bữa cơm gia đình như một “liều thuốc tinh thần tự nhiên”.</blockquote>
+            <p>Từ những dữ liệu trên, có thể xem bữa cơm gia đình như một “liều thuốc tinh thần tự nhiên”, giúp học sinh cân bằng tâm lý và phục hồi năng lượng sau ngày học tập căng thẳng. Tuy vậy, cần lưu ý rằng chưa có nghiên cứu nào đo trực tiếp nồng độ oxytocin hay endorphin trong bữa cơm gia đình. Vai trò của các hormone này được suy ra từ những thực nghiệm về giao tiếp và tiếng cười. Các nghiên cứu về bữa cơm gia đình phần lớn là nghiên cứu quan sát, cho thấy mối liên quan chứ chưa khẳng định quan hệ nhân quả. Điều quan trọng là lợi ích chỉ có được khi các thành viên thực sự trò chuyện, nhìn nhau và chia sẻ với nhau, chứ không phải khi mỗi người cùng ngồi một bàn nhưng chìm vào chiếc điện thoại của riêng mình.</p>
+            <div class="nguon">
+              <b>Tài liệu tham khảo</b>
+              <ol class="tltk">
+                <li>Power ML, Schulkin J. Anticipatory physiological regulation in feeding biology: cephalic phase responses. <i>Appetite</i>. 2008;50(2-3):194-206.</li>
+                <li>Oldham-Cooper RE, Hardman CA, Nicoll CE, Rogers PJ, Brunstrom JM. Playing a computer game during lunch affects fullness, memory for lunch, and later snack intake. <i>Am J Clin Nutr</i>. 2011;93(2):308-313.</li>
+                <li>Robinson E, Aveyard P, Daley A, et al. Eating attentively: a systematic review and meta-analysis of the effect of food intake memory and awareness on eating. <i>Am J Clin Nutr</i>. 2013;97(4):728-742.</li>
+                <li>Gough T, Mann T, Ahmadyar K, Finlay I, Jones A, Tapper K, Robinson E. Eating whilst distracted: a systematic review and meta-analysis of the effect of distraction on concurrent and later intake in adults. <i>Am J Clin Nutr</i>. 2026;123(6):101315.</li>
+                <li>Gonçalves RFS, Barreto DA, Monteiro PI, et al. Smartphone use while eating increases caloric ingestion. <i>Physiol Behav</i>. 2019;204:93-99.</li>
+                <li>Drossman DA. Functional gastrointestinal disorders: history, pathophysiology, clinical features, and Rome IV. <i>Gastroenterology</i>. 2016;150(6):1262-1279.</li>
+                <li>Robinson TN, Banda JA, Hale L, et al. Screen media exposure and obesity in children and adolescents. <i>Pediatrics</i>. 2017;140(Suppl 2):S97-S101.</li>
+                <li>Heinrichs M, Baumgartner T, Kirschbaum C, Ehlert U. Social support and oxytocin interact to suppress cortisol and subjective responses to psychosocial stress. <i>Biol Psychiatry</i>. 2003;54(12):1389-1398.</li>
+                <li>Seltzer LJ, Ziegler TE, Pollak SD. Social vocalizations can release oxytocin in humans. <i>Proc R Soc B</i>. 2010;277(1694):2661-2666.</li>
+                <li>Seltzer LJ, Prososki AR, Ziegler TE, Pollak SD. Instant messages vs. speech: hormones and why we still need to hear each other. <i>Evol Hum Behav</i>. 2012;33(1):42-45.</li>
+                <li>Manninen S, Tuominen L, Dunbar RI, et al. Social laughter triggers endogenous opioid release in humans. <i>J Neurosci</i>. 2017;37(25):6125-6131.</li>
+                <li>Dunbar RIM. Breaking bread: the functions of social eating. <i>Adapt Human Behav Physiol</i>. 2017;3(3):198-211.</li>
+                <li>Harrison ME, Norris ML, Obeid N, et al. Systematic review of the effects of family meal frequency on psychosocial outcomes in youth. <i>Can Fam Physician</i>. 2015;61(2):e96-e106.</li>
+                <li>Hammons AJ, Fiese BH. Is frequency of shared family meals related to the nutritional health of children and adolescents? <i>Pediatrics</i>. 2011;127(6):e1565-e1574.</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+      </article>
 
       <!-- Muốn thêm bài mới: sao chép nguyên khối <article> ... </article> này rồi sửa nội dung -->
       <article class="bai">
