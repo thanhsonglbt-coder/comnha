@@ -429,6 +429,23 @@
   .khao-sat .hop p{margin:0;color:var(--chu-phu);max-width:32em}
   .khao-sat .nut-chinh{background:var(--men-lam);color:#fff}
   .khao-sat .nut-chinh:hover{background:#274BA8}
+  .khao-sat .mo-dau{margin-bottom:28px}
+  .hai-ks{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .the-ks{background:var(--the);border:3px solid var(--men-lam);border-radius:24px;padding:clamp(22px,4vw,32px);display:flex;flex-direction:column;gap:10px}
+  .the-ks h3{margin:0;font-size:26px;font-weight:800;letter-spacing:-.01em}
+  .the-ks p{margin:0;color:var(--chu-phu);flex:1}
+  .the-ks .nut{align-self:flex-start;margin-top:10px}
+  .nhan-ks{align-self:flex-start;font-size:13px;font-weight:800;padding:4px 14px;border-radius:999px;background:var(--lua);color:#16213E}
+  .the-ks.tat{border-style:dashed;background:transparent}
+  .the-ks.tat .nhan-ks{background:var(--lam-nhat);color:var(--chu-phu)}
+  .the-ks .nut[aria-disabled="true"]{background:var(--lam-nhat);color:var(--chu-phu);cursor:default;pointer-events:none}
+  .lien-he{margin-top:20px;display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,36px);align-items:center;background:var(--lam-nhat);border-radius:24px;padding:clamp(22px,4vw,32px)}
+  .lien-he .ma-qr{width:176px;height:176px;border-radius:16px;background:#fff;padding:6px;display:block}
+  .lien-he h3{margin:0 0 6px;font-size:26px;font-weight:800;letter-spacing:-.01em}
+  .lien-he p{margin:0 0 14px;color:var(--chu-phu);max-width:34em}
+  .lien-he .nut{background:var(--men-lam);color:#fff;border:0}
+  .lien-he .nut:hover{background:#274BA8}
+  @media (max-width:760px){ .hai-ks{grid-template-columns:1fr} .lien-he{grid-template-columns:1fr;justify-items:start} }
 
   footer{background:var(--muc);color:var(--su-trang);padding:40px 0 48px;font-size:15px}
   :root[data-theme="dark"] footer{background:#0A0F1E;color:#C9D1E3}
@@ -1035,14 +1052,32 @@
 </section>
 
 <!-- ===== KHẢO SÁT ===== -->
+<!-- Link các lần khảo sát và Zalo nằm trong khối CAU_HINH ở phần script phía dưới -->
 <section class="phan khao-sat" id="khao-sat">
   <div class="khung">
-    <div class="hop">
+    <h2>Góp ý kiến của bạn</h2>
+    <p class="mo-dau">Các phiếu khảo sát đều ẩn danh, mất khoảng 3 phút. Câu trả lời của bạn giúp nhóm đánh giá chiến dịch một cách khoa học.</p>
+    <div class="hai-ks">
+      <article class="the-ks" data-khao-sat="khaosat1">
+        <span class="nhan-ks">Đang mở</span>
+        <h3>Khảo sát lần 1</h3>
+        <p>Cho nhóm biết bữa cơm gia đình của bạn đang diễn ra như thế nào và bạn nghĩ gì về chiếc điện thoại trên mâm cơm.</p>
+        <a class="nut nut-chinh" href="#" target="_blank" rel="noopener">Mở phiếu khảo sát lần 1</a>
+      </article>
+      <article class="the-ks" data-khao-sat="khaosat2">
+        <span class="nhan-ks">Sắp mở</span>
+        <h3>Khảo sát lần 2</h3>
+        <p>Sau khi tham gia chiến dịch, nhóm sẽ mời bạn trả lời thêm một lần nữa để xem có gì thay đổi. Mời bạn đón chờ.</p>
+        <a class="nut nut-chinh" href="#" target="_blank" rel="noopener">Mở phiếu khảo sát lần 2</a>
+      </article>
+    </div>
+    <div class="lien-he">
+      <img class="ma-qr" src="anh/zalo-thao-my.svg" width="176" height="176" alt="Mã QR để nhắn Zalo cho bạn Thảo My" loading="lazy">
       <div>
-        <h2>Góp ý kiến của bạn</h2>
-        <p>Phiếu khảo sát ẩn danh, mất khoảng 3 phút. Câu trả lời của bạn giúp nhóm đánh giá chiến dịch một cách khoa học.</p>
+        <h3>Liên hệ nhóm qua Zalo</h3>
+        <p>Cần hỗ trợ khi làm khảo sát hoặc muốn gửi bài, gửi clip cho nhóm? Quét mã QR bằng Zalo để nhắn cho bạn Thảo My (12T1), hoặc bấm nút bên dưới nếu bạn đang dùng điện thoại.</p>
+        <a class="nut" data-link="zalo" href="#" target="_blank" rel="noopener">Mở Zalo nhắn tin</a>
       </div>
-      <a class="nut nut-chinh" data-link="khaosat" href="#" target="_blank" rel="noopener">Mở phiếu khảo sát</a>
     </div>
   </div>
 </section>
@@ -1100,7 +1135,9 @@ const CAU_HINH = {
   lienKet: {
     fanpage: "https://facebook.com/",          // dán link Fanpage của nhóm
     tiktok:  "https://tiktok.com/",            // dán link kênh TikTok
-    khaosat: "https://forms.gle/"              // dán link Google Form
+    khaosat1: "https://docs.google.com/forms/d/e/1FAIpQLSf-nIE082wtLA0Lm17XKNmHJCO_lY7LEC1i0DIksj1Et7rt8w/viewform",   // Khảo sát lần 1
+    khaosat2: "",                              // dán link Khảo sát lần 2 khi có (để trống thì hiện "Sắp mở")
+    zalo:    "https://zalo.me/0916396119"      // Zalo liên hệ (nếu đổi số, phải tạo lại mã QR anh/zalo-thao-my.svg)
   },
   // ===== GỬI ẢNH THỬ THÁCH (dịch vụ lưu ảnh miễn phí Cloudinary) =====
   // Điền 2 thông tin lấy từ tài khoản Cloudinary của nhóm (xem hướng dẫn).
@@ -1123,6 +1160,18 @@ const CAU_HINH = {
 document.querySelectorAll("[data-link]").forEach(a => {
   const url = CAU_HINH.lienKet[a.dataset.link];
   if (url) a.href = url;
+});
+
+// Khảo sát: lần nào chưa có link thì hiện "Sắp mở"
+document.querySelectorAll("[data-khao-sat]").forEach(the => {
+  const url = CAU_HINH.lienKet[the.dataset.khaoSat];
+  const nut = the.querySelector("a.nut"), nhan = the.querySelector(".nhan-ks");
+  if (url) { nut.href = url; nhan.textContent = "Đang mở"; }
+  else {
+    nut.removeAttribute("href"); nut.removeAttribute("target");
+    nut.setAttribute("aria-disabled", "true"); nut.tabIndex = -1; nut.textContent = "Sắp mở";
+    nhan.textContent = "Sắp mở"; the.classList.add("tat");
+  }
 });
 
 // Menu trên điện thoại
