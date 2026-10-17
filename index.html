@@ -231,6 +231,35 @@
   .info .nguon{font-size:13px;opacity:.7;margin:18px 0 0;line-height:1.5}
   @media (max-width:760px){ .so-lieu{grid-template-columns:1fr;gap:18px} .bi-quyet{grid-template-columns:1fr} }
 
+  /* Video bữa cơm nhà mình */
+  .video{background:#16213E;color:#fff}
+  :root[data-theme="dark"] .video{background:#0A0F1E}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .video{background:#0A0F1E} }
+  .video .mo-dau{color:rgba(255,255,255,.8)}
+  .luoi-video{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .the-video{display:flex;flex-direction:column;gap:12px;background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer}
+  .the-video:disabled{cursor:default}
+  .the-video .man{position:relative;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,var(--mau1,#1D3A8A),var(--mau2,#E9B233));box-shadow:0 14px 30px rgba(0,0,0,.35);transition:transform .2s}
+  .the-video:not(:disabled):hover .man{transform:translateY(-4px)}
+  .the-video .man img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .the-video .chu-cai{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;background:#fff;color:#16213E;font-weight:900;font-size:30px;display:flex;align-items:center;justify-content:center;border:5px solid var(--lua)}
+  .the-video .nut-phat{position:absolute;left:50%;bottom:20%;transform:translateX(-50%);width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center}
+  .the-video .nut-phat::after{content:"";margin-left:5px;border-left:20px solid #16213E;border-top:12px solid transparent;border-bottom:12px solid transparent}
+  .the-video .sap{position:absolute;left:12px;top:12px;background:var(--lua);color:#16213E;font-size:12px;font-weight:800;padding:4px 12px;border-radius:999px}
+  .the-video .hoi-nuoc{position:absolute;left:50%;top:14%;transform:translateX(-50%);font-family:"Patrick Hand","Comic Sans MS",cursive;font-size:20px;color:rgba(255,255,255,.95);white-space:nowrap}
+  .the-video b{display:block;font-size:18px;line-height:1.3}
+  .the-video span.lop{font-size:14px;opacity:.75}
+  dialog.xem-video{border:0;padding:0;background:transparent;width:min(94vw,420px);max-width:none;color:#fff}
+  dialog.xem-video::backdrop{background:rgba(10,15,30,.9)}
+  .xem-video .khung-phat{aspect-ratio:9/16;max-height:80vh;margin:0 auto;border-radius:16px;overflow:hidden;background:#000}
+  .xem-video .khung-phat.ngang{aspect-ratio:16/9}
+  .xem-video iframe,.xem-video video{width:100%;height:100%;border:0;display:block}
+  .xem-video p{text-align:center;margin:12px 0}
+  .xem-video button{display:block;margin:0 auto;font:inherit;font-weight:700;background:rgba(255,255,255,.14);color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:999px;padding:10px 22px;cursor:pointer}
+  dialog.xem-video:has(.ngang){width:min(94vw,900px)}
+  @media (max-width:900px){ .luoi-video{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:420px){ .luoi-video{gap:14px} .the-video .chu-cai{width:64px;height:64px;font-size:24px} }
+
   /* Hoạt động truyền thông */
   .kenh{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--lam-nhat);border-radius:20px;overflow:hidden}
   .kenh article{background:var(--the);padding:28px}
@@ -428,6 +457,7 @@
         <li><a href="#vi-sao">Vì sao</a></li>
         <li><a href="#bai-viet">Bài viết</a></li>
         <li><a href="#infographic">Infographic</a></li>
+        <li><a href="#video">Video</a></li>
         <li><a href="#hoat-dong">Kết nối</a></li>
         <li><a href="#thuc-don">Thực đơn</a></li>
         <li><a href="#thu-thach">Thử thách</a></li>
@@ -823,6 +853,22 @@
     </figure>
   </div>
 </section>
+
+<!-- ===== VIDEO ===== -->
+<!-- Danh sách clip nằm trong khối VIDEO ở phần script phía dưới -->
+<section class="phan video" id="video">
+  <div class="khung">
+    <h2>Bữa cơm nhà mình</h2>
+    <p class="mo-dau">Những thước phim ngắn do chính các bạn học sinh quay lại bữa cơm của gia đình mình. Bấm vào clip để xem.</p>
+    <div class="luoi-video" id="luoi-video"></div>
+  </div>
+</section>
+
+<dialog class="xem-video" id="xem-video" aria-label="Xem video">
+  <div class="khung-phat" id="khung-phat"></div>
+  <p id="ten-video"></p>
+  <button type="button" id="dong-video">Đóng</button>
+</dialog>
 
 <!-- ===== HOẠT ĐỘNG ===== -->
 <section class="phan" id="hoat-dong">
@@ -1351,6 +1397,74 @@ capNhatHua();
   const theoHash = () => { const id = decodeURIComponent(location.hash.slice(1)); if (!moBai(id) && hop.open) dong(); };
   window.addEventListener("hashchange", theoHash);
   theoHash();
+})();
+
+// ===== VIDEO: BỮA CƠM NHÀ MÌNH =====
+(function () {
+  // Khi có clip: dán đường link vào "link". Nhận link YouTube (cả Shorts), TikTok, Facebook,
+  // hoặc tên file video đặt trong thư mục video/ (VD: "video/anh-thu.mp4").
+  // "anh" (không bắt buộc): ảnh bìa, VD "anh/video-anh-thu.jpg". Để link trống thì thẻ hiện "Sắp ra mắt".
+  const VIDEO = [
+    { ten: "Anh Thư",     lop: "12T1", link: "", anh: "" },
+    { ten: "Bảo Trân",    lop: "12T1", link: "", anh: "" },
+    { ten: "Đức Phát",    lop: "12T1", link: "", anh: "" },
+    { ten: "Khánh Huyền", lop: "12T1", link: "", anh: "" }
+  ];
+  const MAU = [["#1D3A8A", "#5B8DEF"], ["#A8703A", "#E9B233"], ["#2E7D32", "#8DB84A"], ["#C8342B", "#F4845F"]];
+  const luoi = document.getElementById("luoi-video"), hop = document.getElementById("xem-video");
+  const khung = document.getElementById("khung-phat"), tenVideo = document.getElementById("ten-video");
+
+  // Đổi link thường thành link nhúng được
+  function nhung(link) {
+    let m;
+    if ((m = link.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([\w-]{6,})/))) return { src: `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0`, doc: /shorts/.test(link) };
+    if ((m = link.match(/tiktok\.com\/.*video\/(\d+)/))) return { src: `https://www.tiktok.com/embed/v2/${m[1]}`, doc: true };
+    if (/facebook\.com|fb\.watch/.test(link)) return { src: `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(link)}&show_text=false`, doc: /reel/.test(link) };
+    if (/\.(mp4|webm|mov)(\?|$)/i.test(link)) return { file: link, doc: true };
+    return null;
+  }
+  const chuCai = ten => ten.split(/\s+/).map(t => t[0]).join("").slice(-2).toUpperCase();
+
+  VIDEO.forEach((v, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "the-video";
+    const [m1, m2] = MAU[i % MAU.length];
+    const coClip = !!(v.link && nhung(v.link));
+    b.innerHTML = `<div class="man" style="--mau1:${m1};--mau2:${m2}">
+        ${v.anh ? '<img alt="" loading="lazy">' : `<span class="hoi-nuoc">Cơm nhà ${v.ten}</span><span class="chu-cai"></span>`}
+        <span class="nut-phat" aria-hidden="true"></span>
+        ${coClip ? "" : '<span class="sap">Sắp ra mắt</span>'}
+      </div><div><b></b><span class="lop"></span></div>`;
+    if (v.anh) b.querySelector("img").src = v.anh;
+    else b.querySelector(".chu-cai").textContent = chuCai(v.ten);
+    b.querySelector("b").textContent = "Bữa cơm nhà bạn " + v.ten;
+    b.querySelector(".lop").textContent = "Lớp " + v.lop;
+    if (coClip) b.addEventListener("click", () => moVideo(v));
+    else { b.disabled = true; b.setAttribute("aria-label", "Clip của bạn " + v.ten + ", sắp ra mắt"); }
+    luoi.append(b);
+  });
+
+  function moVideo(v) {
+    const n = nhung(v.link);
+    khung.innerHTML = "";
+    khung.classList.toggle("ngang", !n.doc);
+    if (n.file) {
+      const vid = document.createElement("video");
+      vid.src = n.file; vid.controls = true; vid.autoplay = true; vid.playsInline = true;
+      khung.append(vid);
+    } else {
+      const f = document.createElement("iframe");
+      f.src = n.src; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
+      f.title = "Bữa cơm nhà bạn " + v.ten;
+      khung.append(f);
+    }
+    tenVideo.textContent = `Bữa cơm nhà bạn ${v.ten}, lớp ${v.lop}`;
+    hop.showModal();
+  }
+  const dong = () => { khung.innerHTML = ""; if (hop.open) hop.close(); }; // xóa khung để dừng phát
+  document.getElementById("dong-video").addEventListener("click", dong);
+  hop.addEventListener("click", e => { if (e.target === hop) dong(); });
+  hop.addEventListener("close", () => { khung.innerHTML = ""; });
 })();
 
 // ===== TRÒ CHƠI: CẤT ĐIỆN THOẠI KHỎI MÂM =====
