@@ -1405,7 +1405,7 @@ capNhatHua();
   // hoặc tên file video đặt trong thư mục video/ (VD: "video/anh-thu.mp4").
   // "anh" (không bắt buộc): ảnh bìa, VD "anh/video-anh-thu.jpg". Để link trống thì thẻ hiện "Sắp ra mắt".
   const VIDEO = [
-    { ten: "Anh Thư",     lop: "12T1", link: "", anh: "" },
+    { ten: "Anh Thư",     lop: "12T1", link: "https://www.youtube.com/watch?v=rZkn7cqIzJ4", anh: "" },
     { ten: "Bảo Trân",    lop: "12T1", link: "", anh: "" },
     { ten: "Đức Phát",    lop: "12T1", link: "", anh: "" },
     { ten: "Khánh Huyền", lop: "12T1", link: "", anh: "" }
@@ -1423,6 +1423,7 @@ capNhatHua();
     if (/\.(mp4|webm|mov)(\?|$)/i.test(link)) return { file: link, doc: true };
     return null;
   }
+  let anhYT;
   const chuCai = ten => ten.split(/\s+/).map(t => t[0]).join("").slice(-2).toUpperCase();
 
   VIDEO.forEach((v, i) => {
@@ -1436,6 +1437,13 @@ capNhatHua();
         ${coClip ? "" : '<span class="sap">Sắp ra mắt</span>'}
       </div><div><b></b><span class="lop"></span></div>`;
     if (v.anh) b.querySelector("img").src = v.anh;
+    else if (coClip && (anhYT = (v.link.match(/(?:shorts\/|v=|embed\/|youtu\.be\/)([\w-]{6,})/) || [])[1])) {
+      // clip YouTube chưa có ảnh bìa: lấy ảnh đại diện của YouTube
+      const img = document.createElement("img"); img.alt = ""; img.loading = "lazy";
+      img.src = `https://i.ytimg.com/vi/${anhYT}/hqdefault.jpg`;
+      b.querySelector(".man").prepend(img);
+      b.querySelectorAll(".hoi-nuoc,.chu-cai").forEach(x => x.remove());
+    }
     else b.querySelector(".chu-cai").textContent = chuCai(v.ten);
     b.querySelector("b").textContent = "Bữa cơm nhà bạn " + v.ten;
     b.querySelector(".lop").textContent = "Lớp " + v.lop;
