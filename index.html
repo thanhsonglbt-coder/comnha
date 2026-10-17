@@ -133,6 +133,50 @@
   .bai details[open] summary{display:none}
   .bai .nguon{font-size:14px;color:var(--chu-phu);border-top:1px solid var(--lam-nhat);padding-top:14px;margin-top:24px}
 
+  /* Bài viết dạng thẻ + khung đọc bài */
+  .kho-bai{display:none}
+  .loc-bai{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+  .loc-bai button{font:inherit;font-size:15px;font-weight:700;padding:8px 18px;border-radius:999px;border:2px solid var(--men-lam);background:transparent;color:var(--muc);cursor:pointer}
+  .loc-bai button[aria-pressed="true"]{background:var(--men-lam);color:#fff}
+  .luoi-bai{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+  .the-bai{grid-column:span 2;display:flex;flex-direction:column;background:var(--the);border:0;border-radius:20px;overflow:hidden;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer;box-shadow:0 10px 24px rgba(22,33,62,.10);transition:transform .2s,box-shadow .2s}
+  .the-bai:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(22,33,62,.18)}
+  .the-bai.lon{grid-column:span 3}
+  .the-bai .bia{aspect-ratio:4/3;background:var(--lam-nhat);overflow:hidden;position:relative}
+  .the-bai.lon .bia{aspect-ratio:16/11}
+  .the-bai .bia img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+  .the-bai .bia svg{width:100%;height:100%;display:block}
+  .the-bai .nhan{position:absolute;left:14px;top:14px;background:var(--lua);color:#16213E;font-size:13px;font-weight:800;padding:4px 12px;border-radius:999px}
+  .the-bai .than{padding:18px 22px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .the-bai h3{margin:0;font-size:21px;line-height:1.25;font-weight:800;letter-spacing:-.01em}
+  .the-bai.lon h3{font-size:26px}
+  .the-bai .ai-viet{margin:0;font-size:14px;color:var(--go);font-weight:700}
+  .the-bai .tom-tat{margin:0;font-size:15px;line-height:1.55;color:var(--chu-phu);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .the-bai .doc{margin-top:auto;padding-top:8px;font-weight:700;color:var(--men-lam)}
+  :root[data-theme="dark"] .the-bai .doc{color:var(--lua)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .the-bai .doc{color:var(--lua)} }
+  .the-bai.sap-dang{cursor:default;background:transparent;border:2px dashed var(--men-lam);box-shadow:none;justify-content:center}
+  .the-bai.sap-dang:hover{transform:none}
+  .the-bai.sap-dang .than{justify-content:center;text-align:center;padding:32px 22px}
+  .the-bai[hidden]{display:none}
+  dialog.doc-bai{border:0;padding:0;width:min(94vw,940px);max-width:none;max-height:92vh;border-radius:22px;background:var(--the);color:var(--muc)}
+  dialog.doc-bai::backdrop{background:rgba(10,15,30,.75)}
+  .doc-bai .dong-bai{position:sticky;top:0;z-index:2;display:flex;justify-content:flex-end;padding:12px 14px 0;pointer-events:none}
+  .doc-bai .dong-bai button{pointer-events:auto;font:inherit;font-weight:700;font-size:15px;background:var(--men-lam);color:#fff;border:0;border-radius:999px;padding:8px 18px;cursor:pointer}
+  .doc-bai article.bai{max-width:none;border-radius:0;padding-top:4px}
+  .doc-bai article.bai.chuyen-gia{border:0}
+  .doc-bai .chuyen-gia figure{position:static}
+  .doc-bai details > summary{display:none}
+  .bai .anh-bai{margin:22px 0}
+  .bai .anh-bai img{display:block;width:100%;max-width:520px;height:auto;border-radius:14px}
+  .bai .anh-bai figcaption{font-size:14px;color:var(--chu-phu);margin-top:8px}
+  .bai .tac-gia-anh{display:flex;gap:16px;align-items:center;margin:0 0 22px}
+  .bai .tac-gia-anh img{width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:50% 25%;border:4px solid var(--lua);flex:none}
+  .bai .tac-gia-anh p{margin:0;font-size:15px;line-height:1.5;color:var(--chu-phu)}
+  .bai .tac-gia-anh b{display:block;color:var(--muc);font-size:17px}
+  @media (max-width:900px){ .luoi-bai{grid-template-columns:repeat(2,1fr)} .the-bai,.the-bai.lon{grid-column:span 1} }
+  @media (max-width:600px){ .luoi-bai{grid-template-columns:1fr} }
+
   /* Bài viết chuyên gia (nổi bật) */
   article.bai.chuyen-gia{max-width:none;display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:clamp(24px,4vw,48px);align-items:start;border:3px solid var(--lua);position:relative}
   .chuyen-gia .nhan-cg{position:absolute;top:-16px;left:28px;background:var(--lua);color:#16213E;font-weight:800;font-size:14px;padding:5px 16px;border-radius:999px}
@@ -486,11 +530,51 @@
 <section class="phan bai-viet" id="bai-viet">
   <div class="khung">
     <h2>Bài viết</h2>
-    <p class="mo-dau">Những câu chuyện nhỏ quanh mâm cơm nhà. Bạn có bài muốn chia sẻ? Gửi cho Fanpage của nhóm nhé.</p>
-    <div class="danh-sach-bai">
+    <p class="mo-dau">Những câu chuyện nhỏ quanh mâm cơm nhà, từ chuyên gia, sinh viên, phụ huynh và học sinh. Bạn có bài muốn chia sẻ? Gửi cho Fanpage của nhóm nhé.</p>
+    <div class="loc-bai" id="loc-bai" role="group" aria-label="Lọc bài viết"></div>
+    <div class="luoi-bai" id="luoi-bai"></div>
 
-      <!-- Bài viết chuyên gia, đặt nổi bật trên cùng -->
-      <article class="bai chuyen-gia" id="bai-chuyen-gia">
+    <!--
+      CÁCH THÊM BÀI MỚI: sao chép một khối <article class="bai" ...> ... </article> bên dưới, đặt lên TRÊN CÙNG
+      (bài trên cùng hiện đầu tiên), rồi sửa:
+        id="bai-..."         : mã bài, không dấu, không trùng (dùng làm đường link chia sẻ: comnha.io.vn/#bai-...)
+        data-loai="..."      : chuyen-gia | sinh-vien | phu-huynh | hoc-sinh | suy-ngam
+        data-bia="anh/..."   : ảnh bìa trên thẻ (bỏ trống thì lấy ảnh hoặc tranh đầu tiên trong bài)
+      Trang tự tạo thẻ bài, nút lọc và khung đọc bài; không cần sửa gì thêm.
+    -->
+    <div class="kho-bai" id="kho-bai">
+
+      <!-- Bài chia sẻ của sinh viên Huỳnh Quỳnh Giao -->
+      <article class="bai" id="bai-quynh-giao" data-loai="sinh-vien" data-bia="anh/quynh-giao.jpg">
+        <p class="chuyen-muc">Sinh viên chia sẻ</p>
+        <h3>Cơm nhà...</h3>
+        <p class="tac-gia">Huỳnh Quỳnh Giao</p>
+        <p class="sa-pa">Đã bao lâu rồi, mình cũng không nhớ, về tới nhà với những mệt mỏi ngoài phố, với những bữa ăn vội, với không gian yên tĩnh đến nặng nề. Đã bao lâu rồi, cuộc sống mình thiếu đi bữa cơm nhà đúng nghĩa.</p>
+        <details>
+          <summary>Đọc toàn bài</summary>
+          <div class="tac-gia-anh">
+            <img src="anh/quynh-giao.jpg" alt="Chân dung Huỳnh Quỳnh Giao trong tà áo dài trắng" loading="lazy">
+            <p><b>Huỳnh Quỳnh Giao</b>Sinh viên Khoa Ngữ văn (sư phạm), lớp 50.01, khóa 50, Trường Đại học Sư phạm TP. Hồ Chí Minh; top 5 kỳ thi chuyên biệt của Trường năm 2024</p>
+          </div>
+          <p>Mình đang là sinh viên năm 3, đủ lớn để có thể rời khỏi vòng tay ba mẹ, đến thành phố lớn để học tập. Nhưng mình chưa đủ lớn để chịu được những ngày tháng tất bật thiếu vắng ba mẹ, đôi khi thứ mình nhớ nhất, đó là bữa cơm nhà, có ba mẹ, có anh hai, có em gái.</p>
+          <figure class="anh-bai">
+            <img src="anh/giao-mam-com.jpg" alt="Mâm cơm gia đình bày nhiều món: tôm, thịt quay, đậu cô ve xào, canh, cơm trắng" loading="lazy" width="666" height="666">
+            <figcaption>Mâm cơm sum họp của gia đình.</figcaption>
+          </figure>
+          <p>Hồi đó, mình thường để dành rất nhiều câu chuyện, chỉ đợi đến bữa cơm để kể cho nhà nghe. Bữa cơm nhà bao giờ cũng thế, đầy đủ dinh dưỡng, tiếng cười và yêu thương. Mẹ lúc nào cũng làm món mình thích, ba luôn gắp cho mình miếng cá ngon nhất, anh em thì tranh giành nhau chút cơm cháy giòn rụm nơi đáy nồi gang. Bữa cơm khi ấy chưa bao giờ đơn thuần chỉ để no bụng, đó là lúc cả nhà ngồi lại, nếp nhà hiển hiện trong từng lời mời cơm, từng tiếng vâng dạ, trong ánh mắt cười của mẹ nhìn cả nhà ăn thật ngon miệng, trong cả những câu chuyện vụn vặt luyên thuyên chẳng dứt. Mâm cơm có đủ vị mặn, ngọt, chua, cay, nhưng đọng lại nhiều nhất, với mình, nó là vị ấm của tình thân, của sự chở che, an toàn tuyệt đối. Giờ cơm, có lẽ chính là giờ gắn kết gia đình nhiều nhất và cũng là nơi chữa lành bản thân mỗi người sau một ngày bôn ba với bộn bề vất vả.</p>
+          <blockquote class="tay">Mâm cơm có đủ vị mặn, ngọt, chua, cay, nhưng đọng lại nhiều nhất là vị ấm của tình thân.</blockquote>
+          <p>Để rồi khi bước chân lên thành phố, bước vào tuổi lưng chừng giữa trưởng thành và bỡ ngỡ, mình mới thấm thía cái “đắt” của một buổi cơm nhà. Thiếu vắng bữa cơm nhà, hóa ra không chỉ thiếu đi một bàn ăn đầy đủ dinh dưỡng mà còn là thiếu đi một điểm tựa cho một tâm hồn đang dần mòn mỏi.</p>
+          <figure class="anh-bai">
+            <img src="anh/giao-com-mot-minh.jpg" alt="Hộp cơm chiên ăn dở đặt trên bàn phím máy tính xách tay đang mở tài liệu học" loading="lazy" width="591" height="591">
+            <figcaption>Bữa cơm một mình bên máy tính.</figcaption>
+          </figure>
+          <p>Mình bắt đầu quen với những buổi chiều tan học muộn, rệu rã ghé vội tiệm tạp hóa mua mì để về nhà nấu ăn, hay đôi khi là những món lề đường chẳng biết có đảm bảo vệ sinh không, ăn vội ăn vàng, chỉ để xoa dịu cơn đói. Mẹ vẫn hay gọi hỏi mình, có cần mẹ gửi đồ ăn vào không, có ăn uống đầy đủ không, và hàng trăm những lời động viên, quan tâm. Nhưng mẹ không biết, thiếu gia đình, bếp không còn ấm, đôi khi vào bếp, mình tủi thân đến mức bật khóc, mình nhận ra khi bê đồ ăn sắp lên bàn, cũng chẳng có ai để làm buổi cơm rôm rả, chẳng có ai để mình tâm sự nữa. Đằng sau những bữa ăn ấy, là dạ dày cồn cào vì thói quen ăn uống thất thường. Mất đi bữa cơm gia đình, là đánh rơi cả một nếp sống. Mình không còn ăn đúng bữa, chẳng buồn dọn mâm chỉnh tề, cứ tiện đâu ngồi đấy, vừa ăn vừa dán mắt vào điện thoại, lướt mãi trong vô thức để ăn cho xong bữa.</p>
+          <p>Giữa phố thị lấp lánh ánh đèn, mình đang là phiên bản mà ngày bé mình vẫn mong ước, nhưng rồi, mình chợt nhận ra, hiện tại mình chỉ mong, có thể được ngồi tại chiếc bàn tròn quen thuộc ở nhà, ngửi mùi đồ ăn mẹ nấu, thấy ba lại hỏi mình: “Hôm nay đi học thế nào?”, thấy anh em mình lại cười ha ha vì một chuyện dở hơi mình vừa kể. Và mượn lời bài hát <i>Cơm nhà</i> của chương trình Anh trai vượt ngàn chông gai 2026, hãy lắng đọng lại để tự hỏi chính mình rằng: “<i>Cơm nhà, đã bao lâu ta chưa ăn cơm nhà?</i>”</p>
+        </details>
+      </article>
+
+      <!-- Bài viết chuyên gia -->
+      <article class="bai chuyen-gia" id="bai-chuyen-gia" data-loai="chuyen-gia" data-bia="anh/bs-nhat-tin.jpg">
         <span class="nhan-cg">Góc chuyên gia</span>
         <figure>
           <img src="anh/bs-nhat-tin.jpg" alt="Bác sĩ nội trú Trần Nguyễn Nhất Tín mặc áo blouse trắng" loading="lazy" width="800" height="1103">
@@ -542,8 +626,7 @@
         </div>
       </article>
 
-      <!-- Muốn thêm bài mới: sao chép nguyên khối <article> ... </article> này rồi sửa nội dung -->
-      <article class="bai">
+      <article class="bai" id="bai-mam-com-chieu" data-loai="suy-ngam">
         <p class="chuyen-muc">Góc suy ngẫm</p>
         <h3>Mâm cơm chiều, nơi cả nhà được là chính mình</h3>
         <p class="tac-gia">Nhóm nghiên cứu KHKT, Trường THPT Đức Linh</p>
@@ -705,6 +788,11 @@
     </div>
   </div>
 </section>
+
+<dialog class="doc-bai" id="doc-bai" aria-label="Đọc bài viết">
+  <div class="dong-bai"><button type="button" id="dong-bai">Đóng ✕</button></div>
+  <div id="noi-dung-bai"></div>
+</dialog>
 
 <!-- ===== INFOGRAPHIC ===== -->
 <section class="phan" id="infographic">
@@ -1173,6 +1261,92 @@ const capNhatHua = () => {
 };
 hop.forEach(h => h.addEventListener("change", capNhatHua));
 capNhatHua();
+
+// ===== BÀI VIẾT: THẺ BÀI, NÚT LỌC, KHUNG ĐỌC =====
+(function () {
+  const TEN_LOAI = { "chuyen-gia": "Chuyên gia", "sinh-vien": "Sinh viên", "phu-huynh": "Phụ huynh", "hoc-sinh": "Học sinh", "suy-ngam": "Góc suy ngẫm" };
+  // Bài sắp đăng: hiện thẻ "Sắp ra mắt". Đăng bài rồi thì xóa dòng tương ứng.
+  const SAP_DANG = [
+    { loai: "phu-huynh", tieuDe: "Chia sẻ của phụ huynh, nguyên Trưởng khoa Điều dưỡng" }
+  ];
+  const kho = document.getElementById("kho-bai"), luoi = document.getElementById("luoi-bai"), loc = document.getElementById("loc-bai");
+  const hop = document.getElementById("doc-bai"), noiDung = document.getElementById("noi-dung-bai");
+  const baiViet = [...kho.querySelectorAll("article.bai")];
+  let dangMo = null;
+
+  const the = [];
+  baiViet.forEach((bai, i) => {
+    const loai = bai.dataset.loai || "suy-ngam";
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "the-bai" + (i < 2 ? " lon" : ""); b.dataset.loai = loai;
+    const bia = document.createElement("div"); bia.className = "bia";
+    const anhDau = bai.querySelector("img");
+    const anhBia = bai.dataset.bia || (anhDau && anhDau.getAttribute("src"));
+    if (anhBia) { const img = document.createElement("img"); img.src = anhBia; img.alt = ""; img.loading = "lazy"; bia.append(img); }
+    else if (bai.querySelector("svg")) {
+      const tranh = bai.querySelector("svg").cloneNode(true);
+      tranh.setAttribute("preserveAspectRatio", "xMidYMid slice"); tranh.setAttribute("aria-hidden", "true");
+      bia.append(tranh);
+    }
+    const nhan = document.createElement("span"); nhan.className = "nhan"; nhan.textContent = TEN_LOAI[loai] || loai; bia.append(nhan);
+    const than = document.createElement("div"); than.className = "than";
+    const h = document.createElement("h3"); h.textContent = bai.querySelector("h3").textContent;
+    const ai = document.createElement("p"); ai.className = "ai-viet"; ai.textContent = (bai.querySelector(".tac-gia") || {}).textContent || "";
+    const tt = document.createElement("p"); tt.className = "tom-tat"; tt.textContent = (bai.querySelector(".sa-pa") || {}).textContent || "";
+    const doc = document.createElement("span"); doc.className = "doc"; doc.textContent = "Đọc bài →";
+    than.append(h, ai, tt, doc); b.append(bia, than);
+    b.setAttribute("aria-label", "Đọc bài: " + h.textContent);
+    b.addEventListener("click", () => { location.hash = bai.id; });
+    luoi.append(b); the.push(b);
+  });
+  SAP_DANG.forEach(s => {
+    const d = document.createElement("div");
+    d.className = "the-bai sap-dang"; d.dataset.loai = s.loai;
+    d.innerHTML = `<div class="than"><span class="ai-viet">Sắp ra mắt</span><h3></h3><p class="tom-tat">Mời bạn đón đọc trong thời gian tới.</p></div>`;
+    d.querySelector("h3").textContent = s.tieuDe;
+    luoi.append(d); the.push(d);
+  });
+
+  // Nút lọc: chỉ hiện loại đang có bài
+  const coLoai = [...new Set(the.map(t => t.dataset.loai))];
+  if (coLoai.length > 1) {
+    [["", "Tất cả"], ...coLoai.map(l => [l, TEN_LOAI[l] || l])].forEach(([l, ten], i) => {
+      const n = document.createElement("button");
+      n.type = "button"; n.textContent = ten; n.setAttribute("aria-pressed", i === 0);
+      n.addEventListener("click", () => {
+        loc.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === n));
+        the.forEach(t => t.hidden = !!l && t.dataset.loai !== l);
+      });
+      loc.append(n);
+    });
+  }
+
+  function moBai(id) {
+    const bai = id && kho.querySelector("#" + CSS.escape(id));
+    if (!bai) return false;
+    dongBai();
+    dangMo = bai;
+    bai.querySelectorAll("details").forEach(d => d.open = true);
+    noiDung.append(bai);
+    if (!hop.open) hop.showModal();
+    hop.scrollTop = 0;
+    return true;
+  }
+  function dongBai() {
+    if (dangMo) { kho.append(dangMo); dangMo = null; }
+  }
+  function donDep() {
+    if (dangMo) { kho.append(dangMo); dangMo = null; }
+    if (location.hash.startsWith("#bai-") && location.hash !== "#bai-viet") history.replaceState(null, "", location.pathname + location.search);
+  }
+  const dong = () => { donDep(); if (hop.open) hop.close(); };
+  hop.addEventListener("close", donDep); // đóng bằng phím Esc
+  document.getElementById("dong-bai").addEventListener("click", dong);
+  hop.addEventListener("click", e => { if (e.target === hop) dong(); });
+  const theoHash = () => { const id = decodeURIComponent(location.hash.slice(1)); if (!moBai(id) && hop.open) dong(); };
+  window.addEventListener("hashchange", theoHash);
+  theoHash();
+})();
 
 // ===== TRÒ CHƠI: CẤT ĐIỆN THOẠI KHỎI MÂM =====
 (function () {
