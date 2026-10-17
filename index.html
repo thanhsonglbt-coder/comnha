@@ -158,6 +158,9 @@
   .the-bai.sap-dang{cursor:default;background:transparent;border:2px dashed var(--men-lam);box-shadow:none;justify-content:center}
   .the-bai.sap-dang:hover{transform:none}
   .the-bai.sap-dang .than{justify-content:center;text-align:center;padding:32px 22px}
+  .the-bai.sap-dang.co-anh{justify-content:flex-start;overflow:hidden}
+  .the-bai.sap-dang.co-anh .bia{border-radius:18px 18px 0 0}
+  .the-bai.sap-dang.co-anh .than{padding:18px 22px 22px}
   .the-bai[hidden]{display:none}
   dialog.doc-bai{border:0;padding:0;width:min(94vw,940px);max-width:none;max-height:92vh;border-radius:22px;background:var(--the);color:var(--muc)}
   dialog.doc-bai::backdrop{background:rgba(10,15,30,.75)}
@@ -1267,7 +1270,7 @@ capNhatHua();
   const TEN_LOAI = { "chuyen-gia": "Chuyên gia", "sinh-vien": "Sinh viên", "phu-huynh": "Phụ huynh", "hoc-sinh": "Học sinh", "suy-ngam": "Góc suy ngẫm" };
   // Bài sắp đăng: hiện thẻ "Sắp ra mắt". Đăng bài rồi thì xóa dòng tương ứng.
   const SAP_DANG = [
-    { loai: "phu-huynh", tieuDe: "Chia sẻ của phụ huynh, nguyên Trưởng khoa Điều dưỡng" }
+    { loai: "phu-huynh", tieuDe: "Chia sẻ của phụ huynh, nguyên Trưởng khoa Dinh dưỡng, Bệnh viện Đa khoa khu vực phía Nam Bình Thuận", anh: "anh/phu-huynh-dinh-duong.jpg" }
   ];
   const kho = document.getElementById("kho-bai"), luoi = document.getElementById("luoi-bai"), loc = document.getElementById("loc-bai");
   const hop = document.getElementById("doc-bai"), noiDung = document.getElementById("noi-dung-bai");
@@ -1302,7 +1305,9 @@ capNhatHua();
   SAP_DANG.forEach(s => {
     const d = document.createElement("div");
     d.className = "the-bai sap-dang"; d.dataset.loai = s.loai;
-    d.innerHTML = `<div class="than"><span class="ai-viet">Sắp ra mắt</span><h3></h3><p class="tom-tat">Mời bạn đón đọc trong thời gian tới.</p></div>`;
+    d.innerHTML = (s.anh ? `<div class="bia"><img alt="" loading="lazy"><span class="nhan">${TEN_LOAI[s.loai] || s.loai}</span></div>` : "") +
+      `<div class="than"><span class="ai-viet">Sắp ra mắt</span><h3></h3><p class="tom-tat">Mời bạn đón đọc trong thời gian tới.</p></div>`;
+    if (s.anh) { d.classList.add("co-anh"); d.querySelector("img").src = s.anh; }
     d.querySelector("h3").textContent = s.tieuDe;
     luoi.append(d); the.push(d);
   });
