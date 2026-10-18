@@ -453,6 +453,12 @@
   footer .khung{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
   footer p{margin:0 0 4px}
   footer .logo{font-size:20px}
+  .thong-ke{flex-basis:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:22px;margin-top:6px}
+  .thong-ke[hidden]{display:none}
+  .thong-ke div{display:flex;flex-direction:column;gap:2px}
+  .thong-ke b{font-size:clamp(26px,5vw,38px);line-height:1.1;font-weight:900;color:var(--lua);font-variant-numeric:tabular-nums}
+  .thong-ke span{font-size:14px;opacity:.85}
+  .thong-ke .ghi-chu-dem{grid-column:1/-1;font-size:13px;opacity:.6;margin:0}
 </style>
 </head>
 <body>
@@ -1123,6 +1129,12 @@
       <p>Tổ trưởng tổ Ngữ Văn</p>
       <p>Trường THPT Đức Linh</p>
     </div>
+    <div class="thong-ke" id="thong-ke" hidden aria-label="Thống kê trang">
+      <div><b id="tk-truy-cap">0</b><span>Lượt truy cập</span></div>
+      <div><b id="tk-nguoi-xem">0</b><span>Người xem</span></div>
+      <div><b id="tk-tuong-tac">0</b><span>Lượt tương tác</span></div>
+      <p class="ghi-chu-dem">Bộ đếm chỉ ghi số lượt, không thu thập tên hay thông tin cá nhân của bạn.</p>
+    </div>
   </div>
 </footer>
 
@@ -1147,6 +1159,10 @@ const CAU_HINH = {
     uploadPreset: "",         // VD: "comnha_gui_anh" (loại Unsigned)
     tagDaDuyet: "da-duyet"    // ảnh gắn tag này mới hiện lên Góc bếp
   },
+  // ===== BỘ ĐẾM LƯỢT TRUY CẬP, NGƯỜI XEM, TƯƠNG TÁC (dịch vụ đếm miễn phí Abacus) =====
+  // Số đếm lưu ở dịch vụ bên ngoài, mỗi bộ đếm nghỉ quá khoảng 5 tháng không có lượt nào thì bị xóa.
+  // Muốn tắt bộ đếm: đặt bat: false. Trên máy thử (localhost) trang chỉ hiển thị, không đếm.
+  boDem: { bat: true, khong_gian: "comnha.io.vn" },
   // Hiện 4 ảnh mẫu để xem thử giao diện. Đổi thành false khi đã có ảnh thật.
   hienAnhMau: true,
   // Có thể tự thêm ảnh thủ công (đặt ảnh trong thư mục anh/ cạnh index.html)
@@ -1359,6 +1375,63 @@ const capNhatHua = () => {
 };
 hop.forEach(h => h.addEventListener("change", capNhatHua));
 capNhatHua();
+
+// ===== BỘ ĐẾM LƯỢT TRUY CẬP VÀ TƯƠNG TÁC =====
+(function () {
+  const BD = CAU_HINH.boDem || {};
+  const khung = document.getElementById("thong-ke");
+  if (!BD.bat || !khung) return;
+  const thu = new URLSearchParams(location.search).get("dem") === "test"; // ?dem=test: thử đếm trên máy
+  const maySach = ["localhost", "127.0.0.1", "[::1]", ""].includes(location.hostname);
+  const choDem = !maySach || thu;
+  const KG = thu ? BD.khong_gian + "-test" : BD.khong_gian;
+  const GOC = "https://abacus.jasoncameron.dev/";
+  const goi = async (viec, khoa) => {
+    try {
+      const r = await fetch(`${GOC}${viec}/${KG}/${khoa}`, { keepalive: true });
+      if (!r.ok) return 0;
+      return (await r.json()).value || 0;
+    } catch (e) { return 0; }
+  };
+  const luu = (kho, khoa, gt) => { try { if (gt === undefined) return kho.getItem(khoa); kho.setItem(khoa, gt); } catch (e) {} return null; };
+  const so = n => n.toLocaleString("vi-VN");
+
+  // Mỗi tương tác đếm vào 'tuong-tac' và vào bộ đếm riêng của loại đó
+  const TUONG_TAC = [
+    [".the-bai:not(.sap-dang)", "doc-bai"], [".anh-the", "xem-anh"], [".the-video:not(:disabled)", "xem-video"],
+    ["#tc-bat-dau", "tro-choi"], ["#td-goi-y, #td-in", "thuc-don"], ["#nut-cat", "cat-dien-thoai"],
+    [".danh-sach-hua input", "loi-hua"], [".the-ks a.nut[href]", "khao-sat"], [".lien-he a.nut", "zalo"],
+    ["a[data-link]:not([data-link=zalo])", "kenh"], [".hero .nut-chinh, .hero .nut-vien", "nut-dau-trang"], ["#nut-gui", "gui-anh"]
+  ];
+  if (choDem) {
+    document.addEventListener("click", e => {
+      for (const [sel, khoa] of TUONG_TAC) {
+        if (e.target.closest && e.target.closest(sel)) { goi("hit", "tuong-tac"); goi("hit", "tt-" + khoa); break; }
+      }
+    }, true);
+  }
+
+  (async () => {
+    if (choDem) {
+      const tasks = [];
+      if (!luu(sessionStorage, "comnha-luot")) { luu(sessionStorage, "comnha-luot", "1"); tasks.push(goi("hit", "truy-cap")); }
+      if (!luu(localStorage, "comnha-da-den")) { luu(localStorage, "comnha-da-den", "1"); tasks.push(goi("hit", "nguoi-xem")); }
+      await Promise.all(tasks);
+    }
+    const [a, b, c] = await Promise.all([goi("get", "truy-cap"), goi("get", "nguoi-xem"), goi("get", "tuong-tac")]);
+    if (!a && !b && !c) return; // chưa lấy được số: giữ ẩn, không hiện số 0 gây hiểu nhầm
+    document.getElementById("tk-truy-cap").textContent = so(a);
+    document.getElementById("tk-nguoi-xem").textContent = so(b);
+    document.getElementById("tk-tuong-tac").textContent = so(c);
+    khung.hidden = false;
+  })();
+  // Cập nhật số tương tác sau khi người xem thao tác (không gây thêm lượt đếm)
+  let hen = 0;
+  document.addEventListener("click", () => {
+    clearTimeout(hen);
+    hen = setTimeout(async () => { const c = await goi("get", "tuong-tac"); if (c) document.getElementById("tk-tuong-tac").textContent = so(c); }, 2500);
+  });
+})();
 
 // ===== BÀI VIẾT: THẺ BÀI, NÚT LỌC, KHUNG ĐỌC =====
 (function () {
