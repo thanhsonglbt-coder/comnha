@@ -1554,9 +1554,10 @@ capNhatHua();
   // hoặc tên file video đặt trong thư mục video/ (VD: "video/anh-thu.mp4").
   // "anh" (không bắt buộc): ảnh bìa, VD "anh/video-anh-thu.jpg". Để link trống thì thẻ hiện "Sắp ra mắt".
   const VIDEO = [
+    // tieuDe/phu (tùy chọn): dùng cho clip không phải của học sinh, thay cho "Bữa cơm nhà bạn ..." và "Lớp ..."
+    { ten: "HTV", tieuDe: "Bữa cơm gia đình – nơi ẩn chứa yêu thương", phu: "Đài Hà Nội (HTV)", link: "https://www.youtube.com/watch?v=rZkn7cqIzJ4", anh: "" },
     { ten: "Anh Thư",     lop: "12T1", link: "https://www.youtube.com/watch?v=pbClCJE2uSM", anh: "" },
-    { ten: "Bảo Trân",    lop: "12T1", link: "", anh: "" },
-    { ten: "Đức Phát",    lop: "12T1", link: "", anh: "" },
+    { ten: "Bảo Trân",    lop: "12T1", link: "https://youtube.com/shorts/D3TNXD_49ok", anh: "" },
     { ten: "Khánh Huyền", lop: "12T1", link: "https://www.youtube.com/watch?v=WmhRQfHBVW0", anh: "" }
   ];
   const MAU = [["#1D3A8A", "#5B8DEF"], ["#A8703A", "#E9B233"], ["#2E7D32", "#8DB84A"], ["#C8342B", "#F4845F"]];
@@ -1594,8 +1595,8 @@ capNhatHua();
       b.querySelectorAll(".hoi-nuoc,.chu-cai").forEach(x => x.remove());
     }
     else b.querySelector(".chu-cai").textContent = chuCai(v.ten);
-    b.querySelector("b").textContent = "Bữa cơm nhà bạn " + v.ten;
-    b.querySelector(".lop").textContent = "Lớp " + v.lop;
+    b.querySelector("b").textContent = v.tieuDe || "Bữa cơm nhà bạn " + v.ten;
+    b.querySelector(".lop").textContent = v.phu || "Lớp " + v.lop;
     if (coClip) b.addEventListener("click", () => moVideo(v));
     else { b.disabled = true; b.setAttribute("aria-label", "Clip của bạn " + v.ten + ", sắp ra mắt"); }
     luoi.append(b);
@@ -1612,10 +1613,10 @@ capNhatHua();
     } else {
       const f = document.createElement("iframe");
       f.src = n.src; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
-      f.title = "Bữa cơm nhà bạn " + v.ten;
+      f.title = v.tieuDe || "Bữa cơm nhà bạn " + v.ten;
       khung.append(f);
     }
-    tenVideo.textContent = `Bữa cơm nhà bạn ${v.ten}, lớp ${v.lop}`;
+    tenVideo.textContent = v.tieuDe ? `${v.tieuDe}, ${v.phu}` : `Bữa cơm nhà bạn ${v.ten}, lớp ${v.lop}`;
     hop.showModal();
   }
   const dong = () => { khung.innerHTML = ""; if (hop.open) hop.close(); }; // xóa khung để dừng phát
