@@ -1187,7 +1187,9 @@ const CAU_HINH = {
   // ===== BỘ ĐẾM LƯỢT TRUY CẬP, NGƯỜI XEM, TƯƠNG TÁC (dịch vụ đếm miễn phí Abacus) =====
   // Số đếm lưu ở dịch vụ bên ngoài, mỗi bộ đếm nghỉ quá khoảng 5 tháng không có lượt nào thì bị xóa.
   // Muốn tắt bộ đếm: đặt bat: false. Trên máy thử (localhost) trang chỉ hiển thị, không đếm.
-  boDem: { bat: true, khong_gian: "comnha.io.vn" },
+  boDem: { bat: true, khong_gian: "comnha.io.vn",
+    // Số cộng thêm vào số đếm thật khi hiển thị (ví dụ lượt xem ngoài web). Sửa các số này tùy ý.
+    congThem: { "truy-cap": 600, "nguoi-xem": 750, "tuong-tac": 550 } },
   // Hiện 4 ảnh mẫu để xem thử giao diện. Đổi thành false khi đã có ảnh thật.
   hienAnhMau: true,
   // Có thể tự thêm ảnh thủ công (đặt ảnh trong thư mục anh/ cạnh index.html)
@@ -1420,6 +1422,8 @@ capNhatHua();
   };
   const luu = (kho, khoa, gt) => { try { if (gt === undefined) return kho.getItem(khoa); kho.setItem(khoa, gt); } catch (e) {} return null; };
   const so = n => n.toLocaleString("vi-VN");
+  const CT = BD.congThem || {};
+  const hien = (khoa, n) => { document.getElementById("tk-" + khoa).textContent = so(n + (Number(CT[khoa]) || 0)); };
 
   // Mỗi tương tác đếm vào 'tuong-tac' và vào bộ đếm riêng của loại đó
   const TUONG_TAC = [
@@ -1445,16 +1449,14 @@ capNhatHua();
     }
     const [a, b, c] = await Promise.all([goi("get", "truy-cap"), goi("get", "nguoi-xem"), goi("get", "tuong-tac")]);
     if (!a && !b && !c) return; // chưa lấy được số: giữ ẩn, không hiện số 0 gây hiểu nhầm
-    document.getElementById("tk-truy-cap").textContent = so(a);
-    document.getElementById("tk-nguoi-xem").textContent = so(b);
-    document.getElementById("tk-tuong-tac").textContent = so(c);
+    hien("truy-cap", a); hien("nguoi-xem", b); hien("tuong-tac", c);
     khung.hidden = false;
   })();
   // Cập nhật số tương tác sau khi người xem thao tác (không gây thêm lượt đếm)
   let hen = 0;
   document.addEventListener("click", () => {
     clearTimeout(hen);
-    hen = setTimeout(async () => { const c = await goi("get", "tuong-tac"); if (c) document.getElementById("tk-tuong-tac").textContent = so(c); }, 2500);
+    hen = setTimeout(async () => { const c = await goi("get", "tuong-tac"); if (c) hien("tuong-tac", c); }, 2500);
   });
 })();
 
